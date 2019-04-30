@@ -35,8 +35,9 @@ public class ProjectService {
 		return projectRecord;
 	}
 
-	public void deleteProject(Long projectId) {
+	public String deleteProject(Long projectId) {
 		projectRepository.deleteById(projectId);
+		return "deleted project successfully";
 		
 	}
 

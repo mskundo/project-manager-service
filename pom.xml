@@ -11,6 +11,7 @@
 	<groupId>com.cognizant</groupId>
 	<artifactId>ProjectManager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>ProjectManager</name>
 	<description>ProjectManager project for Spring Boot</description>
 
@@ -47,10 +48,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
 		</dependency>
 	</dependencies>
 

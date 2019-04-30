@@ -42,8 +42,8 @@ public class ProjectController {
 	
 	@DeleteMapping("/deleteProject/{id}")
 	public String deleteProject(@PathVariable ("id") Long projectId){
-		projectService.deleteProject(projectId);
-		return "deleted project successfully";
+
+		return projectService.deleteProject(projectId);
 	}
 
 }

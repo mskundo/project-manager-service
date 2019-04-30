@@ -6,4 +6,11 @@ public class UserRecord {
 	public String firstName="";
 	public String lastName="";
 	public String employeeId="";
+
+	public UserRecord(Long userId, String firstName, String lastName, String employeeId) {
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.employeeId = employeeId;
+	}
 }

@@ -61,6 +61,12 @@ public class Project {
 		this.priority = priority;
 	}
 
+	public Project(String projectName, Date startDate, Date endDate, int priority) {
+		this.projectName = projectName;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.priority = priority;
+	}
 
 	public Long getProjectId() {
 		return projectId;
@@ -72,9 +78,7 @@ public class Project {
 	}
 
 
-	public String getProjectName() {
-		return projectName;
-	}
+
 
 
 	public void setProjectName(String projectName) {
@@ -82,9 +86,7 @@ public class Project {
 	}
 
 
-	public Date getStartDate() {
-		return startDate;
-	}
+
 
 
 	public void setStartDate(Date startDate) {
@@ -92,9 +94,7 @@ public class Project {
 	}
 
 
-	public Date getEndDate() {
-		return endDate;
-	}
+
 
 
 	public void setEndDate(Date endDate) {
@@ -102,9 +102,7 @@ public class Project {
 	}
 
 
-	public int getPriority() {
-		return priority;
-	}
+
 
 
 	public void setPriority(int priority) {

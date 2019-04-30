@@ -90,6 +90,12 @@ public class User {
 		this.taskId = taskId;
 	}
 
+	public User(String firstName, String lastName, String empId) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.empId = empId;
+	}
+
 	public User() {
 		
 	}

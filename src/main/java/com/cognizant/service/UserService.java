@@ -39,8 +39,16 @@ public class UserService {
 		return userRepository.findAll();
 	}
 
-	public void deleteUser(Long userId) {
+	public String deleteUser(Long userId) {
+
 		userRepository.deleteById(userId);
+
+		return "user deleted successfully";
+	}
+
+	public User updateTaskIdUser(Long taskId, User user) {
+		user.setTaskId(taskId);
+		return userRepository.save(user);
 	}
 
 	public User updateUser(User user, Long userId) {
