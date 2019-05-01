@@ -23,11 +23,15 @@ public class ProjectService {
 
 	@Autowired
 	public UserService userService;
+	
+	@Autowired
+	public TaskService taskService;
 
 	public List<Project> findAll() {
 		try {
 			logger.info("getting data from project table");
-			return projectRepository.findAll();
+			List<Project> p=projectRepository.findAll();
+			return p;
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while getting all data into project table", e.getMessage());
 			throw e;

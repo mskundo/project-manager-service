@@ -65,42 +65,57 @@ public class Task {
 		this.taskId = taskId;
 	}
 
-
+	public Long getParentId() {
+		return parentId;
+	}
 
 	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
-	
+
+	public Long getProjectId() {
+		return projectId;
+	}
 
 	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 
-
+	public String getTaskName() {
+		return taskName;
+	}
 
 	public void setTaskName(String taskName) {
 		this.taskName = taskName;
 	}
 
-
+	public Date getStartDate() {
+		return startDate;
+	}
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-
+	public Date getEndDate() {
+		return endDate;
+	}
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
-
+	public int getPriority() {
+		return priority;
+	}
 
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
 
-
+	public String getStatus() {
+		return status;
+	}
 
 	public void setStatus(String status) {
 		this.status = status;

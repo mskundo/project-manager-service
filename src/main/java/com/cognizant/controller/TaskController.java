@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cognizant.entity.Project;
 import com.cognizant.entity.Task;
 import com.cognizant.model.TaskRecord;
 import com.cognizant.service.TaskService;
@@ -51,5 +50,9 @@ public class TaskController {
 		return taskService.getTaskBySearch(projectId);
 		
 	}
-
+	
+	@GetMapping("/getProjectDetail/{id}")
+	public List<Task> getProjectRelatedDetails(@PathVariable ("id") Long projectId){
+		return taskService.getProjectRelatedDetails(projectId);
+	}
 }

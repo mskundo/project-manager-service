@@ -37,7 +37,10 @@ public class ParentTask {
 	public Long getParentId() {
 		return parentId;
 	}
-
+	
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
 
 	public String getParentTaskName() {
 		return parentTaskName;

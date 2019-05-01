@@ -49,7 +49,7 @@ public class Project {
 	private int priority;
 	
 	public Project() {
-		super();
+		
 	}
 	
 	public Project(Long projectId, String projectName, Date startDate, Date endDate, int priority) {
@@ -77,36 +77,37 @@ public class Project {
 		this.projectId = projectId;
 	}
 
-
-
-
+	public String getProjectName() {
+		return projectName;
+	}
 
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
 
-
-
-
+	public Date getStartDate() {
+		return startDate;
+	}
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-
-
-
+	public Date getEndDate() {
+		return endDate;
+	}
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
-
-
-
+	public int getPriority() {
+		return priority;
+	}
 
 	public void setPriority(int priority) {
 		this.priority = priority;
-	}	
+	}
+
 
 }

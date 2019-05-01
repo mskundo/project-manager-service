@@ -81,9 +81,21 @@ public class TaskService {
 			logger.info("searching task accoring to project id in task table");
 			return taskRepository.getTaskBySearch(projectId);
 		} catch (Exception e) {
-			logger.log(Level.SEVERE, "Exception occurred while searching task accoring to project id in task table", e.getMessage());
+			logger.log(Level.SEVERE, "Exception occurred while searching task accoring to project id in task table",
+					e.getMessage());
 			throw e;
 		}
 	}
 
+	public List<Task> getProjectRelatedDetails(Long projectId) {
+		try {
+			logger.info("getting task detaild according to project id from task table");
+			return taskRepository.getProjectRelatedDetails(projectId);
+		} catch (Exception e) {
+			logger.log(Level.SEVERE,
+					"Exception occurred while getting task detaild according to project id from task table",
+					e.getMessage());
+			throw e;
+		}
+	}
 }
