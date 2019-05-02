@@ -87,15 +87,20 @@ public class TaskService {
 		}
 	}
 
-	public List<Task> getProjectRelatedDetails(Long projectId) {
-		try {
-			logger.info("getting task detaild according to project id from task table");
-			return taskRepository.getProjectRelatedDetails(projectId);
-		} catch (Exception e) {
-			logger.log(Level.SEVERE,
-					"Exception occurred while getting task detaild according to project id from task table",
-					e.getMessage());
-			throw e;
-		}
+//	public List<Task> getProjectRelatedDetails(Long projectId) {
+//		try {
+//			logger.info("getting task detaild according to project id from task table");
+//			return taskRepository.getProjectRelatedDetails(projectId);
+//		} catch (Exception e) {
+//			logger.log(Level.SEVERE,
+//					"Exception occurred while getting task detaild according to project id from task table",
+//					e.getMessage());
+//			throw e;
+//		}
+//	}
+	
+	public List<Task> getProjectRelatedDetails(Long projectId){
+		return taskRepository.getProjectRelatedDetails(projectId);
+		
 	}
 }

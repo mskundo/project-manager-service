@@ -1,5 +1,6 @@
 package com.cognizant.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cognizant.entity.Project;
 import com.cognizant.model.ProjectRecord;
+import com.cognizant.model.ProjectTaskRecord;
 import com.cognizant.repository.ProjectRepository;
 
 @Transactional
@@ -27,11 +29,23 @@ public class ProjectService {
 	@Autowired
 	public TaskService taskService;
 
-	public List<Project> findAll() {
+	public ProjectTaskRecord findAll() {
 		try {
 			logger.info("getting data from project table");
-			List<Project> p=projectRepository.findAll();
-			return p;
+			List<Project> projects=projectRepository.findAll();
+			ProjectTaskRecord pt=new ProjectTaskRecord();
+			for(Project p : projects){
+				System.out.println(p.getProjectId());
+				pt.project.setProjectId(p.getProjectId());
+				pt.project.setProjectName(p.getProjectName());
+				pt.project.setStartDate(p.getStartDate());
+				pt.project.setEndDate(p.getEndDate());
+				pt.project.setPriority(p.getPriority());
+				taskService.getProjectRelatedDetails(p.getProjectId());				
+				
+			}
+			
+			return pt;
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while getting all data into project table", e.getMessage());
 			throw e;

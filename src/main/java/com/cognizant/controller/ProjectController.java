@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cognizant.entity.Project;
 import com.cognizant.model.ProjectRecord;
+import com.cognizant.model.ProjectTaskRecord;
 import com.cognizant.service.ProjectService;
 
 @RestController
@@ -31,7 +32,7 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/getProjects")
-    public List<Project> getAllProjects() {
+    public ProjectTaskRecord getAllProjects() {
     	return projectService.findAll();
     }
 	
