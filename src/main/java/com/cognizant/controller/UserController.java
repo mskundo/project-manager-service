@@ -25,7 +25,7 @@ public class UserController {
 	@Autowired
 	public UserService userService;
 
-	@PostMapping("/saveUsers")
+	@PostMapping("/saveUser")
 	public User saveUser(@RequestBody UserRecord userRecord) {
 		return userService.saveUser(userRecord);
 	}
@@ -35,7 +35,7 @@ public class UserController {
 		return userService.getAll();
 	}
 
-	@PutMapping("/updateUsers/{id}")
+	@PutMapping("/updateUser/{id}")
 	public User updateUser(@RequestBody User user, @PathVariable ("id") Long userId) {
 		return userService.updateUser(user, userId);
 	}

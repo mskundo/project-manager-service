@@ -1,6 +1,5 @@
 package com.cognizant.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,26 +24,27 @@ public class ProjectService {
 
 	@Autowired
 	public UserService userService;
-	
+
 	@Autowired
 	public TaskService taskService;
 
 	public ProjectTaskRecord findAll() {
 		try {
 			logger.info("getting data from project table");
-			List<Project> projects=projectRepository.findAll();
-			ProjectTaskRecord pt=new ProjectTaskRecord();
-			for(Project p : projects){
-				System.out.println(p.getProjectId());
-				pt.project.setProjectId(p.getProjectId());
-				pt.project.setProjectName(p.getProjectName());
-				pt.project.setStartDate(p.getStartDate());
-				pt.project.setEndDate(p.getEndDate());
-				pt.project.setPriority(p.getPriority());
-				taskService.getProjectRelatedDetails(p.getProjectId());				
-				
+			List<Project> projects = projectRepository.findAll();
+			ProjectTaskRecord pt = new ProjectTaskRecord();
+			for (Project p : projects) {
+				System.out.println("inside project task "+p.getProjectId());
+				taskService.getProjectRelatedDetails(p.getProjectId());
+				for (Object[] task : taskService.getProjectRelatedDetails(p.getProjectId())) {
+					Long noOfTask = (Long) task[0];
+					Long completedTask = (Long) task[1];
+					pt.noOfTask=noOfTask;
+					pt.completedTask=completedTask;
+					pt.project.setProjectId(p.getProjectId());
+				}
 			}
-			
+
 			return pt;
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while getting all data into project table", e.getMessage());
@@ -87,6 +87,16 @@ public class ProjectService {
 			return projectRepository.save(project);
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while updating data in project table", e.getMessage());
+			throw e;
+		}
+	}
+
+	public List<Project> findAllProjects() {
+		try {
+			logger.info("getting all data from project table");
+			return projectRepository.findAll();
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception occurred while getting all data from project table", e.getMessage());
 			throw e;
 		}
 	}

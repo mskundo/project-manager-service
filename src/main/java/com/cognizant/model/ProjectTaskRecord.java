@@ -5,7 +5,7 @@ import com.cognizant.entity.Project;
 public class ProjectTaskRecord {
 	
 	public Project project;
-	public int completedTask=0;
-	public int noOfTask=0;
+	public long completedTask=0L;
+	public long noOfTask=0L;
 
 }

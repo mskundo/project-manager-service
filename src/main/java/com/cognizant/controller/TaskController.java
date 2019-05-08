@@ -51,8 +51,8 @@ public class TaskController {
 		
 	}
 	
-	@GetMapping("/getProjectDetail/{id}")
-	public List<Task> getProjectRelatedDetails(@PathVariable ("id") Long projectId){
-		return taskService.getProjectRelatedDetails(projectId);
-	}
+//	@GetMapping("/getProjectDetail/{id}")
+//	public List<Task> getProjectRelatedDetails(@PathVariable ("id") Long projectId){
+//		return taskService.getProjectRelatedDetails(projectId);
+//	}
 }

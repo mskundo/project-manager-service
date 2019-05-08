@@ -17,23 +17,4 @@ public class TaskRecord {
 	public Project project;
 	public ParentTask parent;
 
-	public TaskRecord(String taskName, Date startDate, Date endDate, int priority, String status, User user, Project project, ParentTask parent) {
-		this.taskName = taskName;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.priority = priority;
-		this.status = status;
-		this.user = user;
-		this.project = project;
-		this.parent = parent;
-	}
-
-	public String getTaskName() {
-		return taskName;
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
 }

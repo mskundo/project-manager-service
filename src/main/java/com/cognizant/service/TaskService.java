@@ -99,7 +99,7 @@ public class TaskService {
 //		}
 //	}
 	
-	public List<Task> getProjectRelatedDetails(Long projectId){
+	public List<Object[]> getProjectRelatedDetails(Long projectId){
 		return taskRepository.getProjectRelatedDetails(projectId);
 		
 	}

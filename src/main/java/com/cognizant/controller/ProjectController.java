@@ -32,6 +32,11 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/getProjects")
+    public List<Project> getAllProjectRecords() {
+    	return projectService.findAllProjects();
+    }
+	
+	@GetMapping("/getTaskProjects")
     public ProjectTaskRecord getAllProjects() {
     	return projectService.findAll();
     }

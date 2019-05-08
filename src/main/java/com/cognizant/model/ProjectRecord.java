@@ -14,21 +14,4 @@ public class ProjectRecord {
 	public User user;
 	public Task task;
 
-	public ProjectRecord(String projectName, Date startDate, Date endDate, int priority, User user, Task task) {
-		this.projectName = projectName;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.priority = priority;
-		this.user = user;
-		this.task = task;
-	}
-
-	public String getProjectName() {
-		return projectName;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
 }

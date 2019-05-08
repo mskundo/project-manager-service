@@ -28,10 +28,10 @@ public class UserService {
 		try {
 			logger.info("saving data into user table");
 			User user = new User();
-			user.setUserId(userRecord.userId);
+//			user.setUserId(userRecord.userId);
 			user.setFirstName(userRecord.firstName);
 			user.setLastName(userRecord.lastName);
-			user.setEmpId(userRecord.employeeId);
+			user.setEmpId(userRecord.empId);
 			return userRepository.save(user);
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while saving data into user table", e.getMessage());
