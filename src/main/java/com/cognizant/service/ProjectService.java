@@ -1,5 +1,6 @@
 package com.cognizant.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,24 +29,30 @@ public class ProjectService {
 	@Autowired
 	public TaskService taskService;
 
-	public ProjectTaskRecord findAll() {
+	public List<ProjectTaskRecord> findAll() {
 		try {
 			logger.info("getting data from project table");
 			List<Project> projects = projectRepository.findAll();
-			ProjectTaskRecord pt = new ProjectTaskRecord();
+			List<ProjectTaskRecord> ptlist = new ArrayList<ProjectTaskRecord>();
+			
 			for (Project p : projects) {
-				System.out.println("inside project task "+p.getProjectId());
-				taskService.getProjectRelatedDetails(p.getProjectId());
-				for (Object[] task : taskService.getProjectRelatedDetails(p.getProjectId())) {
-					Long noOfTask = (Long) task[0];
-					Long completedTask = (Long) task[1];
-					pt.noOfTask=noOfTask;
-					pt.completedTask=completedTask;
-					pt.project.setProjectId(p.getProjectId());
+				ProjectRecord projectRecord = new ProjectRecord();
+				projectRecord.setEndDate(p.getEndDate());
+				projectRecord.setPriority(p.getPriority());
+				projectRecord.setProjectName(p.getProjectName());
+				projectRecord.setStartDate(p.getStartDate());
+				List<Object[]> taskEntity = taskService.getProjectRelatedDetails(p.getProjectId());
+				for (Object[] task : taskEntity) {
+					ProjectTaskRecord pt=new ProjectTaskRecord();
+					pt.setNoOfTask((long) task[0]);
+					pt.setCompletedTask((long) task[1]);
+					pt.setProjectRecord(projectRecord);
+					ptlist.add(pt);
 				}
+			
 			}
 
-			return pt;
+			return ptlist;
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while getting all data into project table", e.getMessage());
 			throw e;

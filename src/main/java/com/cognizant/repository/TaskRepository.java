@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.cognizant.entity.Task;
+import com.cognizant.model.TaskRecord;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
