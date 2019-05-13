@@ -37,6 +37,7 @@ public class ProjectService {
 			
 			for (Project p : projects) {
 				ProjectRecord projectRecord = new ProjectRecord();
+				projectRecord.setProjectId(p.getProjectId());
 				projectRecord.setEndDate(p.getEndDate());
 				projectRecord.setPriority(p.getPriority());
 				projectRecord.setProjectName(p.getProjectName());

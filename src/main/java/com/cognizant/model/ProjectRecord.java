@@ -7,6 +7,7 @@ import com.cognizant.entity.User;
 
 public class ProjectRecord {
 	
+	public Long projectId=0L;
 	public String projectName="";
 	public Date startDate=null;
 	public Date endDate=null;
@@ -14,6 +15,13 @@ public class ProjectRecord {
 	public User user;
 	public Task task;
 	
+	
+	public Long getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
+	}
 	public String getProjectName() {
 		return projectName;
 	}

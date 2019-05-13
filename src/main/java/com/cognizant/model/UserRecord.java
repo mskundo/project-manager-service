@@ -7,12 +7,14 @@ public class UserRecord {
 	public String lastName="";
 	public String empId="";
 	
+
 	public Long getUserId() {
 		return userId;
 	}
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
