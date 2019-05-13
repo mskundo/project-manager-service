@@ -35,8 +35,9 @@ public class TaskService {
 			task.setStatus(taskRecord.status);
 			task.setProjectId(taskRecord.project.getProjectId());
 			task.setParentId(taskRecord.parent.getParentId());
+			task.setUserId(taskRecord.user.getUserId());
 			taskRepository.save(task);
-			userService.updateTaskIdUser(task.getTaskId(), taskRecord.user);
+//			userService.updateTaskIdUser(task.getTaskId(), taskRecord.user);
 			return taskRecord;
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while saving all data into task table", e.getMessage());
@@ -86,18 +87,6 @@ public class TaskService {
 			throw e;
 		}
 	}
-
-//	public List<Task> getProjectRelatedDetails(Long projectId) {
-//		try {
-//			logger.info("getting task detaild according to project id from task table");
-//			return taskRepository.getProjectRelatedDetails(projectId);
-//		} catch (Exception e) {
-//			logger.log(Level.SEVERE,
-//					"Exception occurred while getting task detaild according to project id from task table",
-//					e.getMessage());
-//			throw e;
-//		}
-//	}
 	
 	public List<Object[]> getProjectRelatedDetails(Long projectId){
 		return taskRepository.getProjectRelatedDetails(projectId);

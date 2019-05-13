@@ -28,7 +28,6 @@ public class UserService {
 		try {
 			logger.info("saving data into user table");
 			User user = new User();
-//			user.setUserId(userRecord.userId);
 			user.setFirstName(userRecord.firstName);
 			user.setLastName(userRecord.lastName);
 			user.setEmpId(userRecord.empId);
@@ -39,16 +38,16 @@ public class UserService {
 		}
 	}
 
-	public User updatProjectIdUser(Long projectId, User user) {
-		try {
-			logger.info("updating project id into user table");
-			user.setProjectId(projectId);
-			return userRepository.save(user);
-		} catch (Exception e) {
-			logger.log(Level.SEVERE, "Exception occurred while updating project id into user table", e.getMessage());
-			throw e;
-		}
-	}
+//	public User updatProjectIdUser(Long projectId, User user) {
+//		try {
+//			logger.info("updating project id into user table");
+//			user.setProjectId(projectId);
+//			return userRepository.save(user);
+//		} catch (Exception e) {
+//			logger.log(Level.SEVERE, "Exception occurred while updating project id into user table", e.getMessage());
+//			throw e;
+//		}
+//	}
 
 	public List<User> getAll() {
 		try {
@@ -71,16 +70,16 @@ public class UserService {
 		}
 	}
 
-	public User updateTaskIdUser(Long taskId, User user) {
-		try {
-			logger.info("updating task id in user table");
-			user.setTaskId(taskId);
-			return userRepository.save(user);
-		} catch (Exception e) {
-			logger.log(Level.SEVERE, "Exception occurred while updatingtask id into user table", e.getMessage());
-			throw e;
-		}
-	}
+//	public User updateTaskIdUser(Long taskId, User user) {
+//		try {
+//			logger.info("updating task id in user table");
+//			user.setTaskId(taskId);
+//			return userRepository.save(user);
+//		} catch (Exception e) {
+//			logger.log(Level.SEVERE, "Exception occurred while updatingtask id into user table", e.getMessage());
+//			throw e;
+//		}
+//	}
 
 	public User updateUser(User user, Long userId) {
 		try {

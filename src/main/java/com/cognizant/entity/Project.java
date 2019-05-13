@@ -18,47 +18,48 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="project")
+@Table(name = "project")
 
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
-allowGetters = true)
+@JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
 public class Project {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="project_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "project_id")
 	private Long projectId;
-	
-	@Column(name="project")
+
+	@Column(name = "project")
 	private String projectName;
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd") 
-    @Temporal(TemporalType.DATE)
-	@Column(name="start_date")
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "start_date")
 	private Date startDate;
-	
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd") 
-    @Temporal(TemporalType.DATE)
-	@Column(name="end_date")
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "end_date")
 	private Date endDate;
-	
-	
-	@Column(name="Priority")
+
+	@Column(name = "Priority")
 	private int priority;
-	
+
+	@Column(name = "user_id")
+	private Long userId;
+
 	public Project() {
-		
+
 	}
-	
-	public Project(Long projectId, String projectName, Date startDate, Date endDate, int priority) {
+
+	public Project(Long projectId, String projectName, Date startDate, Date endDate, int priority, Long userId) {
 		super();
 		this.projectId = projectId;
 		this.projectName = projectName;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.priority = priority;
+		this.userId = userId;
 	}
 
 	public Project(String projectName, Date startDate, Date endDate, int priority) {
@@ -71,7 +72,6 @@ public class Project {
 	public Long getProjectId() {
 		return projectId;
 	}
-
 
 	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
@@ -109,5 +109,13 @@ public class Project {
 		this.priority = priority;
 	}
 
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	
 
 }

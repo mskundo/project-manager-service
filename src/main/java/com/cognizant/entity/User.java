@@ -25,13 +25,6 @@ public class User {
 	@Column(name="employee_id")
 	private String empId;
 	
-	@Column(name="project_id")
-	private Long projectId;
-	
-	@Column(name="task_id")
-	private Long taskId;
-
-
 	public Long getUserId() {
 		return userId;
 	}
@@ -64,33 +57,8 @@ public class User {
 		this.empId = empId;
 	}
 
-	public Long getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
-	}
-
-	public Long getTaskId() {
-		return taskId;
-	}
-
-	public void setTaskId(Long taskId) {
-		this.taskId = taskId;
-	}
-
-	public User(Long userId, String firstName, String lastName, String empId, Long projectId, Long taskId) {
-		super();
-		this.userId = userId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.empId = empId;
-		this.projectId = projectId;
-		this.taskId = taskId;
-	}
-
 	public User(String firstName, String lastName, String empId) {
+		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.empId = empId;

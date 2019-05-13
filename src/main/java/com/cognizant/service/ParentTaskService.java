@@ -24,9 +24,10 @@ public class ParentTaskService {
 	public ParentTask save(ParentTaskRecord parentTaskRecord) {
 		try {
 			logger.info("saving data to parent task table");
-			ParentTask parenTask = new ParentTask();
-			parenTask.setParentTaskName(parentTaskRecord.taskName);
-			return parentTaskRepository.save(parenTask);
+			ParentTask parentTask = new ParentTask();
+			parentTask.setParentTaskName(parentTaskRecord.taskName);
+			parentTask.setProjectId(parentTaskRecord.user.getUserId());
+			return parentTaskRepository.save(parentTask);
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while saving all data into parent task table", e.getMessage());
 			throw e;
