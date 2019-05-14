@@ -31,7 +31,7 @@ public class TaskController {
 	}
 	
 	@GetMapping("/getTasks")
-	public List<Task> getTasks(){
+	public List<TaskRecord> getTasks(){
 		return taskService.getTask();
 	}
 	

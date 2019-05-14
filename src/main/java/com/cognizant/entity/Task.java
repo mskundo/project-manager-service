@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +27,8 @@ allowGetters = true)
 public class Task {
 
 	@Id
-    @GeneratedValue
+	@GeneratedValue(generator="task_seq")
+	@SequenceGenerator(name="task_seq",sequenceName="TASK_SEQ", allocationSize=1)
     @Column(name="task_id")
 	private Long taskId;
 	

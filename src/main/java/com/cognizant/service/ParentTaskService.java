@@ -1,6 +1,7 @@
 package com.cognizant.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +27,6 @@ public class ParentTaskService {
 			logger.info("saving data to parent task table");
 			ParentTask parentTask = new ParentTask();
 			parentTask.setParentTaskName(parentTaskRecord.taskName);
-			parentTask.setProjectId(parentTaskRecord.user.getUserId());
 			return parentTaskRepository.save(parentTask);
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while saving all data into parent task table", e.getMessage());
@@ -42,6 +42,10 @@ public class ParentTaskService {
 			logger.log(Level.SEVERE, "Exception occurred while getting all parent task data from RDS", e.getMessage());
 			throw e;
 		}
+	}
+
+	public Optional<ParentTask> getparentTaskData(Long parentId) {
+		return parentTaskRepository.findById(parentId);
 	}
 
 }

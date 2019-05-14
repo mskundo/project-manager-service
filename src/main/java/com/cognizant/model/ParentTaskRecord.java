@@ -4,14 +4,7 @@ public class ParentTaskRecord {
 	
 	public String taskName="";
 	public TaskRecord task;
-	public UserRecord user;
 	
-	public UserRecord getUser() {
-		return user;
-	}
-	public void setUser(UserRecord user) {
-		this.user = user;
-	}
 	public String getTaskName() {
 		return taskName;
 	}

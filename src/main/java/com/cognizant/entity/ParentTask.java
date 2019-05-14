@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -18,21 +19,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class ParentTask {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(generator="parent_task_seq")
+	@SequenceGenerator(name="parent_task_seq",sequenceName="PARENT_TASK_SEQ", allocationSize=1)
 	@Column(name = "parent_id")
 	private Long parentId;
 
 	@Column(name = "parent_task")
 	private String parentTaskName;
 
-	@Column(name = "project_id")
-	private Long projectId;
 
-	public ParentTask(Long parentId, String parentTaskName, Long projectId) {
+	public ParentTask(Long parentId, String parentTaskName) {
 		super();
 		this.parentId = parentId;
 		this.parentTaskName = parentTaskName;
-		this.projectId = projectId;
 	}
 
 	public Long getParentId() {
@@ -49,14 +48,6 @@ public class ParentTask {
 
 	public void setParentTaskName(String parentTaskName) {
 		this.parentTaskName = parentTaskName;
-	}
-
-	public Long getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
 	}
 
 	public ParentTask() {
