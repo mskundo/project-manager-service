@@ -31,7 +31,7 @@ public class TaskController {
 	}
 	
 	@GetMapping("/getTasks")
-	public List<TaskRecord> getTasks(){
+	public List<Task> getTasks(){
 		return taskService.getTask();
 	}
 	
@@ -46,13 +46,9 @@ public class TaskController {
 	}
 	
 	@GetMapping("/SearchTask/{id}")
-	public List<Task> getTaskBySearch(@PathVariable ("id") Long projectId){
+	public List<TaskRecord> getTaskBySearch(@PathVariable ("id") Long projectId){
 		return taskService.getTaskBySearch(projectId);
 		
 	}
-	
-//	@GetMapping("/getProjectDetail/{id}")
-//	public List<Task> getProjectRelatedDetails(@PathVariable ("id") Long projectId){
-//		return taskService.getProjectRelatedDetails(projectId);
-//	}
+
 }

@@ -1,7 +1,6 @@
 package com.cognizant.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,8 +43,9 @@ public class ParentTaskService {
 		}
 	}
 
-	public Optional<ParentTask> getparentTaskData(Long parentId) {
-		return parentTaskRepository.findById(parentId);
+	public List<String> getparentTaskData(Long parentId) {
+	List<String> parentTaskName = parentTaskRepository.findNameById(parentId);
+		return parentTaskName;
 	}
 
 }

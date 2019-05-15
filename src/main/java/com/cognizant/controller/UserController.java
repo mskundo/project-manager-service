@@ -42,8 +42,22 @@ public class UserController {
 
 	@DeleteMapping("/deleteUser/{id}")
 	public String deleteUser(@PathVariable ("id") Long userId){
-
 		return userService.deleteUser(userId);
+	}
+	
+	@GetMapping("/sortByFirstName")
+	public List<User> sortByName(){
+		return userService.sortByName();
+	}
+	
+	@GetMapping("/sortByLastName")
+	public List<User> sortByLastName(){
+		return userService.sortByLastName();
+	}
+	
+	@GetMapping("/sortByEmpId")
+	public List<User> sortByEmpId(){
+		return userService.sortByEmpId();
 	}
 
 }

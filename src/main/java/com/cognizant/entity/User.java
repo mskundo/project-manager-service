@@ -23,7 +23,7 @@ public class User {
 	private String lastName;
 	
 	@Column(name="employee_id")
-	private String empId;
+	private Long empId;
 	
 	public Long getUserId() {
 		return userId;
@@ -49,15 +49,15 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getEmpId() {
+	public Long getEmpId() {
 		return empId;
 	}
 
-	public void setEmpId(String empId) {
+	public void setEmpId(Long empId) {
 		this.empId = empId;
 	}
 
-	public User(String firstName, String lastName, String empId) {
+	public User(String firstName, String lastName, Long empId) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

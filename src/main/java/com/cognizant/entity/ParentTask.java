@@ -24,7 +24,7 @@ public class ParentTask {
 	@Column(name = "parent_id")
 	private Long parentId;
 
-	@Column(name = "parent_task")
+	@Column(name = "parent_task_name")
 	private String parentTaskName;
 
 

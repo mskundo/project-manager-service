@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,17 +39,6 @@ public class UserService {
 		}
 	}
 
-//	public User updatProjectIdUser(Long projectId, User user) {
-//		try {
-//			logger.info("updating project id into user table");
-//			user.setProjectId(projectId);
-//			return userRepository.save(user);
-//		} catch (Exception e) {
-//			logger.log(Level.SEVERE, "Exception occurred while updating project id into user table", e.getMessage());
-//			throw e;
-//		}
-//	}
-
 	public List<User> getAll() {
 		try {
 			logger.info("getting data from user table");
@@ -70,17 +60,6 @@ public class UserService {
 		}
 	}
 
-//	public User updateTaskIdUser(Long taskId, User user) {
-//		try {
-//			logger.info("updating task id in user table");
-//			user.setTaskId(taskId);
-//			return userRepository.save(user);
-//		} catch (Exception e) {
-//			logger.log(Level.SEVERE, "Exception occurred while updatingtask id into user table", e.getMessage());
-//			throw e;
-//		}
-//	}
-
 	public User updateUser(User user, Long userId) {
 		try {
 			logger.info("updating data to user table");
@@ -88,6 +67,36 @@ public class UserService {
 			return userRepository.save(user);
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while updating data into user table", e.getMessage());
+			throw e;
+		}
+	}
+
+	public List<User> sortByName() {
+		try {
+			logger.info("sorting user data by first name");
+			return userRepository.findAll(Sort.by("firstName").ascending());
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception occurred while sorting user data by first name", e.getMessage());
+			throw e;
+		}
+	}
+
+	public List<User> sortByLastName() {
+		try {
+			logger.info("sorting user data by first name");
+			return userRepository.findAll(Sort.by("lastName").ascending());
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception occurred while sorting user data by last name", e.getMessage());
+			throw e;
+		}
+	}
+
+	public List<User> sortByEmpId() {
+		try {
+			logger.info("sorting user data by first name");
+			return userRepository.findAll(Sort.by("empId").ascending());
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception occurred while sorting user data by employee id", e.getMessage());
 			throw e;
 		}
 	}

@@ -2,9 +2,16 @@ package com.cognizant.model;
 
 public class ParentTaskRecord {
 	
+	public long id=0L;
 	public String taskName="";
 	public TaskRecord task;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getTaskName() {
 		return taskName;
 	}

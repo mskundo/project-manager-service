@@ -2,10 +2,10 @@ package com.cognizant.model;
 
 public class UserRecord {
 	
-	public Long userId=0L;
-	public String firstName="";
-	public String lastName="";
-	public String empId="";
+	public Long userId;
+	public String firstName;
+	public String lastName;
+	public Long empId;
 	
 
 	public Long getUserId() {
@@ -27,10 +27,10 @@ public class UserRecord {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getEmpId() {
+	public Long getEmpId() {
 		return empId;
 	}
-	public void setEmpId(String empId) {
+	public void setEmpId(Long empId) {
 		this.empId = empId;
 	}
 
