@@ -8,74 +8,40 @@ import java.util.List;
 
 public class UserMockData {
 
-    public UserRecord getUserRecord(){
+	public UserRecord getUserRecord() {
+		UserRecord user = new UserRecord();
+		user.setUserId((long) 1);
+		user.setFirstName("Sam");
+		user.setLastName("Smith");
+		user.setEmpId((long) 121);
+		return user;
+	}
 
-        return new UserRecord(
-                (long)1,"Sam","Smith","101"
-        );
-    }
+	public User getSingleUser() {
+	
+		return new User((long) 1, "Sam", "Smith", (long)101);
+	}
 
-    public User getSingleUser(){
-        return new User(
-                (long)1,
-                "Sam",
-                "Smith",
-                "101",
-                (long)0,
-                (long)0
-        );
-    }
+//	public User getSingleUserNoUserId() {
+//		return new User("Sam", "Smith", (long)101);
+//	}
 
-    public User getSingleUserNoUserId(){
-        return new User(
-                "Sam",
-                "Smith",
-                "101"
-        );
-    }
+	public User getSingleUserWithTaskId() {
+		return new User((long) 1, "Sam", "Smith", (long) 101);
+	}
+//
+//	public User getSingleUserWithProjectId() {
+//		return new User((long) 1, "Sam", "Smith", "101", (long) 0, (long) 1);
+//	}
 
-    public User getSingleUserWithTaskId(){
-        return new User(
-                (long)1,
-                "Sam",
-                "Smith",
-                "101",
-                (long)1,
-                (long)0
-        );
-    }
+	public List<User> getUserList() {
 
-    public User getSingleUserWithProjectId(){
-        return new User(
-                (long)1,
-                "Sam",
-                "Smith",
-                "101",
-                (long)0,
-                (long)1
-        );
-    }
+		List<User> userList = new ArrayList<User>();
 
-    public List<User> getUserList(){
+		userList.add(new User((long) 1, "Sam", "Smith", (long) 101));
 
-        List<User> userList = new ArrayList();
+		userList.add(new User((long) 2, "Jom", "Smith", (long) 102));
 
-        userList.add(new User(
-                (long)1,
-                "Sam",
-                "Smith",
-                "101",
-                (long)0,
-                (long)0));
-
-        userList.add(new User(
-                (long)2,
-                "Jom",
-                "Smith",
-                "102",
-                (long)0,
-                (long)0));
-
-        return userList;
-    }
+		return userList;
+	}
 }

@@ -15,12 +15,12 @@ public class ParentTaskMockData {
 
     public ParentTaskRecord getParentTaskRecord(){
 
-        return new ParentTaskRecord("DummyParentTask", new TaskMockData().getSingleTask());
+        return new ParentTaskRecord();
     }
 
     public List<ParentTask> getParentTaskList(){
 
-        List<ParentTask> parentTaskList = new ArrayList();
+        List<ParentTask> parentTaskList = new ArrayList<ParentTask>();
 
         parentTaskList.add(
                 new ParentTask((long)1, "DummyParentTask")

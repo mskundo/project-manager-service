@@ -2,6 +2,7 @@ package com.cognizant.controller;
 
 import com.cognizant.entity.Project;
 import com.cognizant.model.ProjectRecord;
+import com.cognizant.model.ProjectTaskRecord;
 import com.cognizant.service.ProjectService;
 import com.cognizant.util.ProjectMockData;
 import org.junit.Assert;
@@ -33,10 +34,19 @@ public class ProjectControllerTest {
     }
 
     @Test
+    public void getAllProjectRecordsTest(){
+
+        Mockito.when(projectService.findAllProjects()).thenReturn(new ProjectMockData().getProjectList());
+        List<Project> output = projectController.getAllProjectRecords();
+
+        Assert.assertEquals(2, output.size());
+    }
+    
+    @Test
     public void getAllProjectsTest(){
 
-        Mockito.when(projectService.findAll()).thenReturn(new ProjectMockData().getProjectList());
-        List<Project> output = projectController.getAllProjects();
+        Mockito.when(projectService.findAll()).thenReturn(new ProjectMockData().getProjectTaskList());
+        List<ProjectTaskRecord> output = projectController.getAllProjects();
 
         Assert.assertEquals(2, output.size());
     }

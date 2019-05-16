@@ -57,8 +57,9 @@ public class User {
 		this.empId = empId;
 	}
 
-	public User(String firstName, String lastName, Long empId) {
+	public User(Long userId, String firstName, String lastName, Long empId) {
 		super();
+		this.userId=userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.empId = empId;

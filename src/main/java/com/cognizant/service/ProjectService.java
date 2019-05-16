@@ -70,7 +70,6 @@ public class ProjectService {
 			project.setPriority(projectRecord.priority);
 			project.setUserId(projectRecord.user.getUserId());
 			projectRepository.save(project);
-//			userService.updatProjectIdUser(project.getProjectId(), projectRecord.user);
 			return projectRecord;
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while saving all data into project table", e.getMessage());

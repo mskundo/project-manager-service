@@ -71,33 +71,4 @@ public class UserService {
 		}
 	}
 
-	public List<User> sortByName() {
-		try {
-			logger.info("sorting user data by first name");
-			return userRepository.findAll(Sort.by("firstName").ascending());
-		} catch (Exception e) {
-			logger.log(Level.SEVERE, "Exception occurred while sorting user data by first name", e.getMessage());
-			throw e;
-		}
-	}
-
-	public List<User> sortByLastName() {
-		try {
-			logger.info("sorting user data by first name");
-			return userRepository.findAll(Sort.by("lastName").ascending());
-		} catch (Exception e) {
-			logger.log(Level.SEVERE, "Exception occurred while sorting user data by last name", e.getMessage());
-			throw e;
-		}
-	}
-
-	public List<User> sortByEmpId() {
-		try {
-			logger.info("sorting user data by first name");
-			return userRepository.findAll(Sort.by("empId").ascending());
-		} catch (Exception e) {
-			logger.log(Level.SEVERE, "Exception occurred while sorting user data by employee id", e.getMessage());
-			throw e;
-		}
-	}
 }

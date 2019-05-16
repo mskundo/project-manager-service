@@ -48,7 +48,7 @@ public class UserControllerTest {
 
         Mockito.when(userService.updateUser(Mockito.any(User.class), Mockito.anyLong())).thenReturn(new UserMockData().getSingleUser());
 
-        User output = userController.updateUser(new UserMockData().getSingleUserNoUserId(), (long)1);
+        User output = userController.updateUser(new UserMockData().getSingleUser(), (long)1);
 
         Assert.assertEquals(new UserMockData().getSingleUser().getUserId(),output.getUserId());
         Assert.assertEquals(new UserMockData().getSingleUser().getFirstName(),output.getFirstName());

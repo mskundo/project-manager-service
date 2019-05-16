@@ -7,11 +7,11 @@ import com.cognizant.entity.User;
 
 public class ProjectRecord {
 	
-	public Long projectId=0L;
-	public String projectName="";
-	public Date startDate=null;
-	public Date endDate=null;
-	public int priority=0;
+	public Long projectId;
+	public String projectName;
+	public Date startDate;
+	public Date endDate;
+	public int priority;
 	public User user;
 	public Task task;
 	

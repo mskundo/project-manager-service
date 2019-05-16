@@ -38,7 +38,7 @@ public class TaskService {
 			task.setPriority(taskRecord.priority);
 			task.setStatus(taskRecord.status);
 			task.setProjectId(taskRecord.project.getProjectId());
-			task.setParentId(taskRecord.parent.getId());
+			task.setParentId(taskRecord.parent.getParentId());
 			task.setUserId(taskRecord.user.getUserId());
 			taskRepository.save(task);
 			return taskRecord;

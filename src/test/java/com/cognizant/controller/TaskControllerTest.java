@@ -46,7 +46,7 @@ public class TaskControllerTest {
 
 		Mockito.when(taskService.updateTask(Mockito.any(Task.class), Mockito.anyLong()))
 				.thenReturn(new TaskMockData().getSingleTask());
-		Task output = taskController.updateTask(new TaskMockData().getSingleTaskWithoutTaskId(), (long) 1);
+		Task output = taskController.updateTask(new TaskMockData().getSingleTask(), (long) 1);
 
 		Assert.assertEquals(new TaskMockData().getSingleTask().getTaskId(), output.getTaskId());
 	}
@@ -62,15 +62,8 @@ public class TaskControllerTest {
 	public void getTaskBySearchTest() {
 		Mockito.when(taskService.getTaskBySearch(Mockito.anyLong()))
 				.thenReturn(new TaskMockData().getTaskBySearchList());
-		List<Task> output = taskController.getTaskBySearch(Mockito.anyLong());
-		Assert.assertEquals(2, output.size());
+		List<TaskRecord> output = taskController.getTaskBySearch(Mockito.anyLong());
+		Assert.assertEquals(1, output.size());
 	}
 	
-	@Test
-	public void getProjectRelatedDetailsTest() {
-		Mockito.when(taskService.getProjectRelatedDetails(Mockito.anyLong()))
-		.thenReturn(new TaskMockData().getProjectRelatedDetailsList());
-		List<Task> output = taskController.getProjectRelatedDetails(Mockito.anyLong());
-		Assert.assertEquals(2, output.size());
-	}
 }

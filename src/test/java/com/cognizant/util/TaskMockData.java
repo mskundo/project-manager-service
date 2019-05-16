@@ -10,66 +10,76 @@ import java.util.List;
 public class TaskMockData {
 
 	public TaskRecord getTaskRecord() {
+		
+		TaskRecord task=new TaskRecord();
+		task.setTaskName("DummyTask");
+		task.setStartDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-02")));
+		task.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-03")));
+		task.setPriority(1);
+		task.setStatus("New");
+		task.setUser(new UserMockData().getSingleUser());
+		task.setProject(new ProjectMockData().getSingleProject());
+		task.setParent(new ParentTaskMockData().getSingleParentTask());
 
-		return new TaskRecord("DummyTask", java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New", new UserMockData().getSingleUser(),
-				new ProjectMockData().getSingleProject(), new ParentTaskMockData().getSingleParentTask());
+		return task;
 	}
 
 	public Task getSingleTask() {
 
-		return new Task((long) 1, (long) 1, (long) 1, "DummyTask", java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New");
-	}
-
-	public Task getSingleTaskWithoutTaskId() {
-
 		return new Task((long) 1, (long) 1, "DummyTask", java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New");
+				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New", (long) 1);
 	}
+
+//	public Task getSingleTaskWithoutTaskId() {
+//
+//		return new Task((long) 1, (long) 1, "DummyTask", java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
+//				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New");
+//	}
 
 	public List<Task> getTaskList() {
 
 		List<Task> taskList = new ArrayList<>();
 
-		taskList.add(new Task((long) 1, (long) 1, (long) 1, "DummyTask",
+		taskList.add(new Task((long) 1, (long) 1, "DummyTask",
 				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New"));
+				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New",(long) 1));
 
-		taskList.add(new Task((long) 2, (long) 1, (long) 1, "DummyTask2",
+		taskList.add(new Task((long) 2, (long) 1, "DummyTask2",
 				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New"));
+				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New",(long) 1));
 
 		return taskList;
 	}
 
-	public List<Task> getTaskBySearchList() {
+	public List<TaskRecord> getTaskBySearchList() {
 
-		List<Task> taskList = new ArrayList<>();
-
-		taskList.add(new Task((long) 1, (long) 1, (long) 1, "DummyTask",
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New"));
-
-		taskList.add(new Task((long) 2, (long) 1, (long) 1, "DummyTask2",
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New"));
-
-		return taskList;
-	}
-
-	public List<Task> getProjectRelatedDetailsList() {
-		List<Task> taskList = new ArrayList<>();
-
-		taskList.add(new Task((long) 1, (long) 1, (long) 1, "DummyTask",
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New"));
-
-		taskList.add(new Task((long) 2, (long) 1, (long) 1, "DummyTask2",
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New"));
+		List<TaskRecord> taskList = new ArrayList<>();
+		TaskRecord t=new TaskRecord();
+		t.setParentName("DummyTask");
+		t.setStartDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-02")));
+		t.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-03")));
+		t.setPriority(1);
+		t.setStatus("New");
+		t.setParent(new ParentTaskMockData().getSingleParentTask());
+		t.setProject(new ProjectMockData().getSingleProject());
+		t.setUser(new UserMockData().getSingleUser());
+		taskList.add(t);
 
 		return taskList;
 	}
+
+//	public List<Task> getProjectRelatedDetailsList() {
+//		List<Task> taskList = new ArrayList<>();
+//
+//		taskList.add(new Task((long) 1, (long) 1, (long) 1, "DummyTask",
+//				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
+//				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New"));
+//
+//		taskList.add(new Task((long) 2, (long) 1, (long) 1, "DummyTask2",
+//				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
+//				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New"));
+//
+//		return taskList;
+//	}
 
 }

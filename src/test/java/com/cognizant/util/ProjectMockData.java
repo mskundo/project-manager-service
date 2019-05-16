@@ -2,71 +2,73 @@ package com.cognizant.util;
 
 import com.cognizant.entity.Project;
 import com.cognizant.model.ProjectRecord;
+import com.cognizant.model.ProjectTaskRecord;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ProjectMockData {
 
-    public Project getSingleProject(){
+	public Project getSingleProject() {
 
-        return new Project(
-                (long)1,
-                "DummyProject",
-                java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
-                java.sql.Date.valueOf(LocalDate.parse("2019-04-20")),
-                1
-        );
-    }
+		Project p = new Project();
+		p.setUserId((long) 1);
+		p.setProjectName("DummyProject");
+		p.setStartDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-01")));
+		p.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-20")));
+		p.setPriority(1);
+		return p;
 
-    public ProjectRecord getProjectRecord(){
+	}
 
-        return new ProjectRecord(
-                "DummyProject",
-                java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
-                java.sql.Date.valueOf(LocalDate.parse("2019-04-20")),
-                1,
-                new UserMockData().getSingleUser(),
-                new TaskMockData().getSingleTask()
-        );
-    }
+	public ProjectRecord getProjectRecord() {
+		ProjectRecord project = new ProjectRecord();
+		project.setProjectName("DummyProject");
+		project.setStartDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-01")));
+		project.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-20")));
+		project.setPriority(1);
+		project.setUser(new UserMockData().getSingleUser());
+		project.setTask(new TaskMockData().getSingleTask());
+		return project;
+	}
 
-    public Project getSingleProjectWithoutProjectId(){
+	public Project getSingleProjectWithoutProjectId() {
 
-        return new Project(
-                "DummyProject",
-                java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
-                java.sql.Date.valueOf(LocalDate.parse("2019-04-20")),
-                1
-        );
-    }
+		return new Project("DummyProject", java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
+				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1);
+	}
 
-    public List<Project> getProjectList(){
+	public List<Project> getProjectList() {
 
-        List<Project> projectList = new ArrayList();
+		List<Project> projectList = new ArrayList<Project>();
 
-        projectList.add(
-                new Project(
-                    (long)1,
-                    "DummyProject",
-                    java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
-                    java.sql.Date.valueOf(LocalDate.parse("2019-04-20")),
-                    1
-                )
-        );
+		projectList.add(new Project((long) 1, "DummyProject", java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
+				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1, (long)1));
 
-        projectList.add(
-                new Project(
-                        (long)2,
-                        "DummyProject2",
-                        java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
-                        java.sql.Date.valueOf(LocalDate.parse("2019-04-20")),
-                        1
-                )
-        );
+		projectList.add(new Project((long) 2, "DummyProject2", java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
+				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1,(long)1));
 
-        return projectList;
-    }
+		return projectList;
+	}
+
+	public List<ProjectTaskRecord> getProjectTaskList() {
+
+		List<ProjectTaskRecord> projectList = new ArrayList<ProjectTaskRecord>();
+		
+		ProjectTaskRecord ptask=new ProjectTaskRecord();
+		ptask.setProjectRecord(new ProjectMockData().getProjectRecord());
+		ptask.setCompletedTask(1);
+		ptask.setNoOfTask(3);
+		projectList.add(ptask);
+		
+		ProjectTaskRecord ptask1=new ProjectTaskRecord();
+		ptask1.setProjectRecord(new ProjectMockData().getProjectRecord());
+		ptask1.setCompletedTask(2);
+		ptask1.setNoOfTask(3);
+		projectList.add(ptask1);
+
+		return projectList;
+	}
+
 }

@@ -2,20 +2,21 @@ package com.cognizant.model;
 
 import java.util.Date;
 
+import com.cognizant.entity.ParentTask;
 import com.cognizant.entity.Project;
 import com.cognizant.entity.User;
 
 public class TaskRecord {
 	
-	public long taskId=0L;
-	public String taskName="";
-	public Date startDate=null;
-	public Date endDate=null;
-	public int priority=0;
-	public String status="";
+	public long taskId;
+	public String taskName;
+	public Date startDate;
+	public Date endDate;
+	public int priority;
+	public String status;
 	public User user;
 	public Project project;
-	public ParentTaskRecord parent;
+	public ParentTask parent;
 	public String ParentName;
 	
 	
@@ -74,10 +75,10 @@ public class TaskRecord {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-	public ParentTaskRecord getParent() {
+	public ParentTask getParent() {
 		return parent;
 	}
-	public void setParent(ParentTaskRecord parent) {
+	public void setParent(ParentTask parent) {
 		this.parent = parent;
 	}
 		

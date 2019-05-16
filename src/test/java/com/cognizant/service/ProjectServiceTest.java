@@ -1,13 +1,10 @@
 package com.cognizant.service;
 
 import com.cognizant.entity.Project;
-import com.cognizant.entity.Task;
-import com.cognizant.entity.User;
 import com.cognizant.model.ProjectRecord;
+import com.cognizant.model.ProjectTaskRecord;
 import com.cognizant.repository.ProjectRepository;
 import com.cognizant.util.ProjectMockData;
-import com.cognizant.util.TaskMockData;
-import com.cognizant.util.UserMockData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,8 +31,6 @@ public class ProjectServiceTest {
     public void saveProjectTest(){
 
         Mockito.when(projectRepository.save(Mockito.any(Project.class))).thenReturn(new ProjectMockData().getSingleProject());
-        Mockito.when(userService.updatProjectIdUser(Mockito.anyLong(), Mockito.any(User.class))).thenReturn(new UserMockData().getSingleUser());
-
         ProjectRecord output = projectService.saveProject(new ProjectMockData().getProjectRecord());
 
         Assert.assertEquals(new ProjectMockData().getProjectRecord().getProjectName(), output.getProjectName());
@@ -58,11 +53,22 @@ public class ProjectServiceTest {
     }
 
     @Test
+    public void findAllProjectsTest(){
+
+        Mockito.when(projectRepository.findAll()).thenReturn(new ProjectMockData().getProjectList());
+
+        List<Project> output = projectService.findAllProjects();
+
+        Assert.assertEquals(2,output.size());
+
+    }
+    
+    @Test
     public void findAllTest(){
 
         Mockito.when(projectRepository.findAll()).thenReturn(new ProjectMockData().getProjectList());
 
-        List<Project> output = projectService.findAll();
+        List<ProjectTaskRecord> output = projectService.findAll();
 
         Assert.assertEquals(2,output.size());
 

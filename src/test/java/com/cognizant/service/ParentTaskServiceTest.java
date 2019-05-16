@@ -3,7 +3,6 @@ package com.cognizant.service;
 import com.cognizant.entity.ParentTask;
 import com.cognizant.repository.ParentTaskRepository;
 import com.cognizant.util.ParentTaskMockData;
-import com.cognizant.util.TaskMockData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
