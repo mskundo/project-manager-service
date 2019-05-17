@@ -13,6 +13,7 @@ import com.cognizant.entity.Project;
 import com.cognizant.model.ProjectRecord;
 import com.cognizant.model.ProjectTaskRecord;
 import com.cognizant.repository.ProjectRepository;
+import com.cognizant.repository.TaskRepository;
 
 @Transactional
 @Service
@@ -28,11 +29,14 @@ public class ProjectService {
 
 	@Autowired
 	public TaskService taskService;
+	
+	@Autowired
+	public TaskRepository taskRepository;
 
 	public List<ProjectTaskRecord> findAll() {
 		try {
-			logger.info("getting data from project table");
-			List<Project> projects = projectRepository.findAll();
+			logger.info("getting data from project table"); 
+			List<Project> projects = projectRepository.findAllProjects();
 			List<ProjectTaskRecord> ptlist = new ArrayList<ProjectTaskRecord>();
 			
 			for (Project p : projects) {
@@ -50,9 +54,7 @@ public class ProjectService {
 					pt.setProjectRecord(projectRecord);
 					ptlist.add(pt);
 				}
-			
 			}
-
 			return ptlist;
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while getting all data into project table", e.getMessage());
@@ -69,6 +71,7 @@ public class ProjectService {
 			project.setEndDate(projectRecord.endDate);
 			project.setPriority(projectRecord.priority);
 			project.setUserId(projectRecord.user.getUserId());
+			project.setStatus("N");
 			projectRepository.save(project);
 			return projectRecord;
 		} catch (Exception e) {
@@ -80,7 +83,8 @@ public class ProjectService {
 	public String deleteProject(Long projectId) {
 		try {
 			logger.info("deleting data from project table");
-			projectRepository.deleteById(projectId);
+			projectRepository.suspendById(projectId);
+			taskRepository.suspendtaskById(projectId);
 			return "deleted project successfully";
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while deletig data from project table", e.getMessage());

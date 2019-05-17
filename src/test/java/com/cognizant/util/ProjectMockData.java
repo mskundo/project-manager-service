@@ -44,10 +44,10 @@ public class ProjectMockData {
 		List<Project> projectList = new ArrayList<Project>();
 
 		projectList.add(new Project((long) 1, "DummyProject", java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1, (long)1));
+				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1, (long)1, "Y"));
 
 		projectList.add(new Project((long) 2, "DummyProject2", java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1,(long)1));
+				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1,(long)1, "Y"));
 
 		return projectList;
 	}

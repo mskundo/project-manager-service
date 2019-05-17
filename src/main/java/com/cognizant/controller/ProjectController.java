@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +20,7 @@ import com.cognizant.service.ProjectService;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/projectmanager/projects")
-public class ProjectController {
+public class ProjectController { 
 	
 	@Autowired
 	private ProjectService projectService;
@@ -46,9 +45,8 @@ public class ProjectController {
 		return projectService.updateProject(project, projectId);
 	}
 	
-	@DeleteMapping("/deleteProject/{id}")
+	@PutMapping("/deleteProject/{id}")
 	public String deleteProject(@PathVariable ("id") Long projectId){
-
 		return projectService.deleteProject(projectId);
 	}
 }

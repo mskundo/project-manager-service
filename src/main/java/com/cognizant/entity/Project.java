@@ -47,12 +47,15 @@ public class Project {
 
 	@Column(name = "user_id")
 	private Long userId;
+	
+	@Column(name="status")
+	private String status;
 
 	public Project() {
 
 	}
 
-	public Project(Long projectId, String projectName, Date startDate, Date endDate, int priority, Long userId) {
+	public Project(Long projectId, String projectName, Date startDate, Date endDate, int priority, Long userId, String status) {
 		super();
 		this.projectId = projectId;
 		this.projectName = projectName;
@@ -60,6 +63,7 @@ public class Project {
 		this.endDate = endDate;
 		this.priority = priority;
 		this.userId = userId;
+		this.status=status;
 	}
 
 	public Project(String projectName, Date startDate, Date endDate, int priority) {
@@ -115,6 +119,14 @@ public class Project {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 
