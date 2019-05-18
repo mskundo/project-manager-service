@@ -1,10 +1,12 @@
 package com.cognizant.util;
 
 import com.cognizant.entity.Task;
+import com.cognizant.model.ProjectTaskRecord;
 import com.cognizant.model.TaskRecord;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class TaskMockData {
@@ -66,6 +68,15 @@ public class TaskMockData {
 		taskList.add(t);
 
 		return taskList;
+	}
+
+	public List<Object[]> getProjectRelatedDetailsList() {
+		List<Object[]> list=new ArrayList<Object[]>();
+		ProjectTaskRecord p=new ProjectTaskRecord();
+		p.setCompletedTask((long)1);
+		p.setNoOfTask((long)1);
+		list.addAll((Collection<? extends Object[]>) p);
+		return list;
 	}
 
 //	public List<Task> getProjectRelatedDetailsList() {

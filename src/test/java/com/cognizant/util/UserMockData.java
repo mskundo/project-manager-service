@@ -22,17 +22,9 @@ public class UserMockData {
 		return new User((long) 1, "Sam", "Smith", (long)101);
 	}
 
-//	public User getSingleUserNoUserId() {
-//		return new User("Sam", "Smith", (long)101);
-//	}
-
 	public User getSingleUserWithTaskId() {
 		return new User((long) 1, "Sam", "Smith", (long) 101);
 	}
-//
-//	public User getSingleUserWithProjectId() {
-//		return new User((long) 1, "Sam", "Smith", "101", (long) 0, (long) 1);
-//	}
 
 	public List<User> getUserList() {
 

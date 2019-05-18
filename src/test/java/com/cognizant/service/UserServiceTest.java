@@ -39,27 +39,12 @@ public class UserServiceTest {
 
         Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(new UserMockData().getSingleUser());
 
-        User output = userService.updateUser(new UserMockData().getSingleUserNoUserId(), (long)1);
+        User output = userService.updateUser(new UserMockData().getSingleUser(), (long)1);
 
         Assert.assertEquals(new UserMockData().getSingleUser().getUserId(),output.getUserId());
         Assert.assertEquals(new UserMockData().getSingleUser().getFirstName(),output.getFirstName());
         Assert.assertEquals(new UserMockData().getSingleUser().getLastName(),output.getLastName());
         Assert.assertEquals(new UserMockData().getSingleUser().getEmpId(),output.getEmpId());
-
-    }
-
-    @Test
-    public void updateTaskIdUserTest(){
-
-        Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(new UserMockData().getSingleUserWithTaskId());
-
-        User output = userService.updateTaskIdUser((long)1, new UserMockData().getSingleUser());
-
-        Assert.assertEquals(new UserMockData().getSingleUser().getUserId(),output.getUserId());
-        Assert.assertEquals(new UserMockData().getSingleUser().getFirstName(),output.getFirstName());
-        Assert.assertEquals(new UserMockData().getSingleUser().getLastName(),output.getLastName());
-        Assert.assertEquals(new UserMockData().getSingleUser().getEmpId(),output.getEmpId());
-        Assert.assertEquals(new UserMockData().getSingleUser().getTaskId(),output.getTaskId());
 
     }
 
@@ -75,24 +60,6 @@ public class UserServiceTest {
     public void getAllTest(){
         Mockito.when(userRepository.findAll()).thenReturn(new UserMockData().getUserList());
         List<User> output = userService.getAll();
-
         Assert.assertEquals(2,output.size());
-
-
     }
-
-    @Test
-    public void updatProjectIdUserTest(){
-        Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(new UserMockData().getSingleUserWithProjectId());
-
-        User output = userService.updatProjectIdUser((long)1, new UserMockData().getSingleUser());
-
-        Assert.assertEquals(new UserMockData().getSingleUser().getUserId(),output.getUserId());
-        Assert.assertEquals(new UserMockData().getSingleUser().getFirstName(),output.getFirstName());
-        Assert.assertEquals(new UserMockData().getSingleUser().getLastName(),output.getLastName());
-        Assert.assertEquals(new UserMockData().getSingleUser().getEmpId(),output.getEmpId());
-        Assert.assertEquals(new UserMockData().getSingleUser().getProjectId(),output.getProjectId());
-    }
-
-
 }

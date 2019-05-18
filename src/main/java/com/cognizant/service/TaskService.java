@@ -97,7 +97,6 @@ public class TaskService {
 				List<String> parentTask = parentTaskService.getparentTaskData(t.getParentId());
 				for (String task : parentTask) {
 					taskRecord.setParentName(task);
-					
 				}
 				tlist.add(taskRecord);
 			}

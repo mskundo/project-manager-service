@@ -1,11 +1,10 @@
 package com.cognizant.service;
 
 import com.cognizant.entity.Task;
-import com.cognizant.entity.User;
 import com.cognizant.model.TaskRecord;
 import com.cognizant.repository.TaskRepository;
+import com.cognizant.util.ParentTaskMockData;
 import com.cognizant.util.TaskMockData;
-import com.cognizant.util.UserMockData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,13 +26,16 @@ public class TaskServiceTest {
 
 	@Mock
 	public UserService userService;
+	
+	@Mock
+	public ParentTaskService parentTaskService;
 
 	@Test
 	public void saveTask() {
 
 		Mockito.when(taskRepository.save(Mockito.any(Task.class))).thenReturn(new TaskMockData().getSingleTask());
-		Mockito.when(userService.updateTaskIdUser(Mockito.anyLong(), Mockito.any(User.class)))
-				.thenReturn(new UserMockData().getSingleUser());
+//		Mockito.when(userService.updateTaskIdUser(Mockito.anyLong(), Mockito.any(User.class)))
+//				.thenReturn(new UserMockData().getSingleUser());
 
 		TaskRecord output = taskService.saveTask(new TaskMockData().getTaskRecord());
 
@@ -52,7 +54,7 @@ public class TaskServiceTest {
 	public void updateTaskTest() {
 
 		Mockito.when(taskRepository.save(Mockito.any(Task.class))).thenReturn(new TaskMockData().getSingleTask());
-		Task output = taskService.updateTask(new TaskMockData().getSingleTaskWithoutTaskId(), (long) 1);
+		Task output = taskService.updateTask(new TaskMockData().getSingleTask(), (long) 1);
 
 		Assert.assertEquals(new TaskMockData().getSingleTask().getTaskId(), output.getTaskId());
 	}
@@ -72,9 +74,12 @@ public class TaskServiceTest {
 	public void getTaskBySearchTest() {
 
 		Mockito.when(taskRepository.getTaskBySearch(Mockito.anyLong()))
-				.thenReturn(new TaskMockData().getTaskBySearchList());
+				.thenReturn(new TaskMockData().getTaskList());
+		
+		Mockito.when(parentTaskService.getparentTaskData(Mockito.anyLong()))
+		.thenReturn(new ParentTaskMockData().getParentTaskListData());
 
-		List<Task> output = taskService.getTaskBySearch(Mockito.anyLong());
+		List<TaskRecord> output = taskService.getTaskBySearch(Mockito.anyLong());
 
 		Assert.assertEquals(2, output.size());
 
@@ -86,7 +91,7 @@ public class TaskServiceTest {
 		Mockito.when(taskRepository.getProjectRelatedDetails(Mockito.anyLong()))
 				.thenReturn(new TaskMockData().getProjectRelatedDetailsList());
 
-		List<Task> output = taskService.getProjectRelatedDetails(Mockito.anyLong());
+		List<Object[]> output = taskService.getProjectRelatedDetails(Mockito.anyLong());
 
 		Assert.assertEquals(2, output.size());
 
