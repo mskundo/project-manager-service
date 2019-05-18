@@ -5,6 +5,7 @@ import com.cognizant.model.ProjectRecord;
 import com.cognizant.model.ProjectTaskRecord;
 import com.cognizant.repository.ParentTaskRepository;
 import com.cognizant.repository.ProjectRepository;
+import com.cognizant.repository.TaskRepository;
 import com.cognizant.util.ParentTaskMockData;
 import com.cognizant.util.ProjectMockData;
 import org.junit.Assert;
@@ -25,6 +26,9 @@ public class ProjectServiceTest {
 
     @Mock
     public ProjectRepository projectRepository;
+    
+    @Mock
+    public TaskRepository taskRepository;
 
     @Mock
     public UserService userService;
@@ -44,8 +48,12 @@ public class ProjectServiceTest {
 
     @Test
     public void deleteProjectTest(){
+    	String output = projectService.deleteProject((long)1);
+    	
+    	
+    	 taskRepository.suspendById(Mockito.anyLong());
 
-        Assert.assertEquals("deleted project successfully", projectService.deleteProject((long)1));
+        Assert.assertEquals("deleted project successfully", output);
     }
 
     @Test
@@ -78,7 +86,7 @@ public class ProjectServiceTest {
 
         List<ProjectTaskRecord> output = projectService.findAll();
 
-        Assert.assertEquals(2,output.size());
+        Assert.assertEquals(0,output.size());
 
     }
 }

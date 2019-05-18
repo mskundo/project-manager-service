@@ -22,10 +22,6 @@ public class UserMockData {
 		return new User((long) 1, "Sam", "Smith", (long)101);
 	}
 
-	public User getSingleUserWithTaskId() {
-		return new User((long) 1, "Sam", "Smith", (long) 101);
-	}
-
 	public List<User> getUserList() {
 
 		List<User> userList = new ArrayList<User>();

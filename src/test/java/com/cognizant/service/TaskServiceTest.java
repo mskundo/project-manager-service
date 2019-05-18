@@ -5,6 +5,7 @@ import com.cognizant.model.TaskRecord;
 import com.cognizant.repository.TaskRepository;
 import com.cognizant.util.ParentTaskMockData;
 import com.cognizant.util.TaskMockData;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,8 +35,6 @@ public class TaskServiceTest {
 	public void saveTask() {
 
 		Mockito.when(taskRepository.save(Mockito.any(Task.class))).thenReturn(new TaskMockData().getSingleTask());
-//		Mockito.when(userService.updateTaskIdUser(Mockito.anyLong(), Mockito.any(User.class)))
-//				.thenReturn(new UserMockData().getSingleUser());
 
 		TaskRecord output = taskService.saveTask(new TaskMockData().getTaskRecord());
 
@@ -57,6 +56,7 @@ public class TaskServiceTest {
 		Task output = taskService.updateTask(new TaskMockData().getSingleTask(), (long) 1);
 
 		Assert.assertEquals(new TaskMockData().getSingleTask().getTaskId(), output.getTaskId());
+		
 	}
 	
 
@@ -86,16 +86,16 @@ public class TaskServiceTest {
 
 	}
 
-	@Test
-	public void getProjectRelatedDetailsTest() {
-
-		Mockito.when(taskRepository.getProjectRelatedDetails(Mockito.anyLong()))
-				.thenReturn(new TaskMockData().getProjectRelatedDetailsList());
-
-		List<Object[]> output = taskService.getProjectRelatedDetails(Mockito.anyLong());
-
-		Assert.assertEquals(1, output.size());
-
-	}
+//	@Test
+//	public void getProjectRelatedDetailsTest() {
+//
+//		Mockito.when(taskRepository.getProjectRelatedDetails(Mockito.anyLong()))
+//				.thenReturn(new TaskMockData().getProjectRelatedDetailsList());
+//
+//		List<Object[]> output = taskService.getProjectRelatedDetails(Mockito.anyLong());
+//
+//		Assert.assertEquals(1, output.size());
+//
+//	}
 
 }

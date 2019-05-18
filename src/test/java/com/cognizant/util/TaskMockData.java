@@ -32,12 +32,6 @@ public class TaskMockData {
 				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New", (long) 1);
 	}
 
-//	public Task getSingleTaskWithoutTaskId() {
-//
-//		return new Task((long) 1, (long) 1, "DummyTask", java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-//				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New");
-//	}
-
 	public List<Task> getTaskList() {
 
 		List<Task> taskList = new ArrayList<>();
@@ -69,28 +63,14 @@ public class TaskMockData {
 
 		return taskList;
 	}
-
+	
 	public List<Object[]> getProjectRelatedDetailsList() {
 		List<Object[]> list=new ArrayList<Object[]>();
-		ProjectTaskRecord p=new ProjectTaskRecord();
-		p.setCompletedTask((long)1);
-		p.setNoOfTask((long)1);
+		Object p=new ProjectTaskRecord();
+		((ProjectTaskRecord) p).setCompletedTask((long)1);
+		((ProjectTaskRecord) p).setNoOfTask((long)1);
 		list.addAll((Collection<? extends Object[]>) p);
 		return list;
 	}
-
-//	public List<Task> getProjectRelatedDetailsList() {
-//		List<Task> taskList = new ArrayList<>();
-//
-//		taskList.add(new Task((long) 1, (long) 1, (long) 1, "DummyTask",
-//				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-//				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New"));
-//
-//		taskList.add(new Task((long) 2, (long) 1, (long) 1, "DummyTask2",
-//				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
-//				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New"));
-//
-//		return taskList;
-//	}
 
 }
