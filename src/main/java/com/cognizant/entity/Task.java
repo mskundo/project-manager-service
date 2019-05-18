@@ -134,8 +134,10 @@ public class Task {
 		this.userId = userId;
 	}
 
-	public Task(Long parentId, Long projectId, String taskName, Date startDate, Date endDate, int priority, String status, Long userId) {
+	public Task(Long taskId, Long parentId, Long projectId, String taskName, Date startDate, Date endDate, int priority,
+			String status, Long userId) {
 		super();
+		this.taskId = taskId;
 		this.parentId = parentId;
 		this.projectId = projectId;
 		this.taskName = taskName;
@@ -143,8 +145,20 @@ public class Task {
 		this.endDate = endDate;
 		this.priority = priority;
 		this.status = status;
-		this.userId=userId;
+		this.userId = userId;
 	}
+//
+//	public Task(Long parentId, Long projectId, String taskName, Date startDate, Date endDate, int priority, String status, Long userId) {
+//		super();
+//		this.parentId = parentId;
+//		this.projectId = projectId;
+//		this.taskName = taskName;
+//		this.startDate = startDate;
+//		this.endDate = endDate;
+//		this.priority = priority;
+//		this.status = status;
+//		this.userId=userId;
+//	}
 
 	public Task() {
 		

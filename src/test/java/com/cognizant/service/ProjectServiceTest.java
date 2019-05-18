@@ -3,7 +3,9 @@ package com.cognizant.service;
 import com.cognizant.entity.Project;
 import com.cognizant.model.ProjectRecord;
 import com.cognizant.model.ProjectTaskRecord;
+import com.cognizant.repository.ParentTaskRepository;
 import com.cognizant.repository.ProjectRepository;
+import com.cognizant.util.ParentTaskMockData;
 import com.cognizant.util.ProjectMockData;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,6 +28,9 @@ public class ProjectServiceTest {
 
     @Mock
     public UserService userService;
+    
+    @Mock
+    public ParentTaskRepository parentTaskRepository;
 
     @Test
     public void saveProjectTest(){
@@ -67,6 +72,9 @@ public class ProjectServiceTest {
     public void findAllTest(){
 
         Mockito.when(projectRepository.findAll()).thenReturn(new ProjectMockData().getProjectList());
+        
+        Mockito.when(parentTaskRepository.findNameById(Mockito.anyLong()))
+		.thenReturn(new ParentTaskMockData().getParentTaskListData());
 
         List<ProjectTaskRecord> output = projectService.findAll();
 

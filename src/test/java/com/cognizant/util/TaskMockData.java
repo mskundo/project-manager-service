@@ -28,7 +28,7 @@ public class TaskMockData {
 
 	public Task getSingleTask() {
 
-		return new Task((long) 1, (long) 1, "DummyTask", java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
+		return new Task((long) 1, (long) 1, (long) 1, "DummyTask", java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
 				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New", (long) 1);
 	}
 
@@ -42,11 +42,11 @@ public class TaskMockData {
 
 		List<Task> taskList = new ArrayList<>();
 
-		taskList.add(new Task((long) 1, (long) 1, "DummyTask",
+		taskList.add(new Task((long) 1, (long) 1, (long) 1, "DummyTask",
 				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
 				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New",(long) 1));
 
-		taskList.add(new Task((long) 2, (long) 1, "DummyTask2",
+		taskList.add(new Task((long) 2, (long) 2, (long) 1, "DummyTask2",
 				java.sql.Date.valueOf(LocalDate.parse("2019-04-02")),
 				java.sql.Date.valueOf(LocalDate.parse("2019-04-03")), 1, "New",(long) 1));
 

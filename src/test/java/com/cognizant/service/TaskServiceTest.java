@@ -58,6 +58,7 @@ public class TaskServiceTest {
 
 		Assert.assertEquals(new TaskMockData().getSingleTask().getTaskId(), output.getTaskId());
 	}
+	
 
 	@Test
 	public void getTaskTest() {
@@ -93,7 +94,7 @@ public class TaskServiceTest {
 
 		List<Object[]> output = taskService.getProjectRelatedDetails(Mockito.anyLong());
 
-		Assert.assertEquals(2, output.size());
+		Assert.assertEquals(1, output.size());
 
 	}
 
