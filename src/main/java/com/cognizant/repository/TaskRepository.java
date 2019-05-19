@@ -17,7 +17,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 	@Query("UPDATE Task SET STATUS='complete' WHERE task_id= :taskId")
 	void suspendById(@Param("taskId") Long taskId);
 
-	@Query("from Task where project_id= :projectId")
+	@Query("from Task where project_id= :projectId and status!='suspend'")
 	List<Task> getTaskBySearch(@Param("projectId") Long projectId);
 	
 	@Query("select count(task_id) as task_id,  SUM( CASE WHEN status = 'completed' THEN 1 ELSE 0 END ) as status from Task where project_id= :projectId")

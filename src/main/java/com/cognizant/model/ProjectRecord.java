@@ -14,8 +14,14 @@ public class ProjectRecord {
 	public int priority;
 	public User user;
 	public Task task;
+	public Long userId;
 	
-	
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 	public Long getProjectId() {
 		return projectId;
 	}
