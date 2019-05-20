@@ -2,10 +2,6 @@ package com.cognizant.model;
 
 import java.util.Date;
 
-import com.cognizant.entity.ParentTask;
-import com.cognizant.entity.Project;
-import com.cognizant.entity.User;
-
 public class TaskRecord {
 	
 	public long taskId;
@@ -14,13 +10,43 @@ public class TaskRecord {
 	public Date endDate;
 	public int priority;
 	public String status;
-	public User user;
-	public Project project;
-	public ParentTask parent;
 	public String ParentName;
+	public String userName;
+	public String projectName;
+	public long userId;
+	public long projectId;
+	public long parentTaskId;
 	
-	
-	
+	public long getUserId() {
+		return userId;
+	}
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+	public long getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
+	}
+	public long getParentTaskId() {
+		return parentTaskId;
+	}
+	public void setParentTaskId(long parentTaskId) {
+		this.parentTaskId = parentTaskId;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getProjectName() {
+		return projectName;
+	}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
 	public String getParentName() {
 		return ParentName;
 	}
@@ -63,24 +89,7 @@ public class TaskRecord {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Project getProject() {
-		return project;
-	}
-	public void setProject(Project project) {
-		this.project = project;
-	}
-	public ParentTask getParent() {
-		return parent;
-	}
-	public void setParent(ParentTask parent) {
-		this.parent = parent;
-	}
+	
 		
 
 }

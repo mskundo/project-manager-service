@@ -46,14 +46,13 @@ public class ProjectService {
 				projectRecord.setPriority(p.getPriority());
 				projectRecord.setProjectName(p.getProjectName());
 				projectRecord.setStartDate(p.getStartDate());
-				List<Object[]> taskEntity = taskService.getProjectRelatedDetails(p.getProjectId());
-				for (Object[] task : taskEntity) {
-					ProjectTaskRecord pt=new ProjectTaskRecord();
-					pt.setNoOfTask((long) task[0]);
-					pt.setCompletedTask((long) task[1]);
+				Long noOfTask = taskService.getNoOfTasks(p.getProjectId());
+				Long completedTask = taskService.getCompletedTasks(p.getProjectId());
+				ProjectTaskRecord pt=new ProjectTaskRecord();
+					pt.setNoOfTask(noOfTask);
+					pt.setCompletedTask(completedTask);
 					pt.setProjectRecord(projectRecord);
 					ptlist.add(pt);
-				}
 			}
 			return ptlist;
 		} catch (Exception e) {
@@ -111,6 +110,11 @@ public class ProjectService {
 			logger.log(Level.SEVERE, "Exception occurred while getting all data from project table", e.getMessage());
 			throw e;
 		}
+	}
+
+	public String getProjectName(Long projectId) {
+		String projectName=projectRepository.getProjectName(projectId);
+		return projectName;
 	}
 
 }

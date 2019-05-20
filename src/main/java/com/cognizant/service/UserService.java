@@ -70,4 +70,11 @@ public class UserService {
 		}
 	}
 
+	public String getUserName(Long userId) {
+		String result = userRepository.getFullName(userId);
+		result = result.replaceAll(",", " ");
+		System.out.printf("result for user name details >>>> " +result);
+		return result;
+	}
+
 }

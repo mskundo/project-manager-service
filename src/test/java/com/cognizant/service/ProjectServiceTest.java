@@ -3,11 +3,11 @@ package com.cognizant.service;
 import com.cognizant.entity.Project;
 import com.cognizant.model.ProjectRecord;
 import com.cognizant.model.ProjectTaskRecord;
-import com.cognizant.repository.ParentTaskRepository;
 import com.cognizant.repository.ProjectRepository;
 import com.cognizant.repository.TaskRepository;
-import com.cognizant.util.ParentTaskMockData;
 import com.cognizant.util.ProjectMockData;
+import com.cognizant.util.TaskMockData;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +34,7 @@ public class ProjectServiceTest {
     public UserService userService;
     
     @Mock
-    public ParentTaskRepository parentTaskRepository;
+    public TaskService taskService;
 
     @Test
     public void saveProjectTest(){
@@ -81,8 +81,11 @@ public class ProjectServiceTest {
 
         Mockito.when(projectRepository.findAll()).thenReturn(new ProjectMockData().getProjectList());
         
-        Mockito.when(parentTaskRepository.findNameById(Mockito.anyLong()))
-		.thenReturn(new ParentTaskMockData().getParentTaskListData());
+        Mockito.when(taskService.getNoOfTasks(Mockito.anyLong()))
+		.thenReturn(new TaskMockData().getNoOfTasks());
+        
+        Mockito.when(taskService.getCompletedTasks(Mockito.anyLong()))
+		.thenReturn(new TaskMockData().getCompletedTasks());
 
         List<ProjectTaskRecord> output = projectService.findAll();
 

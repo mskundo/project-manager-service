@@ -27,6 +27,9 @@ public class TaskService {
 
 	@Autowired
 	public ParentTaskService parentTaskService;
+	
+	@Autowired
+	public ProjectService projectService;
 
 	public TaskRecord saveTask(TaskRecord taskRecord) {
 		try {
@@ -37,10 +40,9 @@ public class TaskService {
 			task.setEndDate(taskRecord.endDate);
 			task.setPriority(taskRecord.priority);
 			task.setStatus(taskRecord.status);
-			
-			task.setProjectId(taskRecord.project.getProjectId());
-			task.setParentId(taskRecord.parent.getParentId());
-			task.setUserId(taskRecord.user.getUserId());
+			task.setProjectId(taskRecord.getProjectId());
+			task.setParentId(taskRecord.getParentTaskId());
+			task.setUserId(taskRecord.getUserId());
 			taskRepository.save(task);
 			return taskRecord;
 		} catch (Exception e) {
@@ -85,7 +87,7 @@ public class TaskService {
 	public List<TaskRecord> getTaskBySearch(Long projectId) {
 		try {
 			logger.info("searching task accoring to project id in task table");
-			List<Task> tasks= taskRepository.getTaskBySearch(projectId);
+			List<Task> tasks = taskRepository.getTaskBySearch(projectId);
 			List<TaskRecord> tlist = new ArrayList<TaskRecord>();
 			for (Task t : tasks) {
 				TaskRecord taskRecord = new TaskRecord();
@@ -95,10 +97,15 @@ public class TaskService {
 				taskRecord.setEndDate(t.getEndDate());
 				taskRecord.setPriority(t.getPriority());
 				taskRecord.setStatus(t.getStatus());
-				List<String> parentTask = parentTaskService.getparentTaskData(t.getParentId());
-				for (String task : parentTask) {
-					taskRecord.setParentName(task);
-				}
+				taskRecord.setUserId(t.getUserId());
+				taskRecord.setProjectId(t.getProjectId());
+				taskRecord.setParentTaskId(t.getParentId());
+				String parentTask = parentTaskService.getparentTaskData(t.getParentId());
+				String userName = userService.getUserName(t.getUserId());
+				String projectName=projectService.getProjectName(t.getProjectId());
+				taskRecord.setParentName(parentTask);
+				taskRecord.setUserName(userName);
+				taskRecord.setProjectName(projectName);
 				tlist.add(taskRecord);
 			}
 			return tlist;
@@ -109,8 +116,29 @@ public class TaskService {
 		}
 	}
 
-	public List<Object[]> getProjectRelatedDetails(Long projectId) {
-		return taskRepository.getProjectRelatedDetails(projectId);
+	public Long getNoOfTasks(Long projectId) {
+		Long result = 0l;
+		try {
+			result = taskRepository.getTaskIdCount(projectId);
+		} catch (Exception e) {
+			System.out.printf("inside catch block of task id count>>", e);
 
+		}
+
+		return result;
+	}
+
+	public Long getCompletedTasks(Long projectId) {
+		Long result = 0l;
+		try {
+			result = taskRepository.getStatusCompletedCount(projectId);
+			if (result == null) {
+				result = 0l;
+			}
+		} catch (Exception e) {
+			System.out.printf("inside completed task count >>>>>", e);
+
+		}
+		return result;
 	}
 }

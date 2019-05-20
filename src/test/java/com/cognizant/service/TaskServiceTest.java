@@ -85,17 +85,29 @@ public class TaskServiceTest {
 		Assert.assertEquals(2, output.size());
 
 	}
+	
+	@Test
+	public void getNoOfTasksTest() {
 
-//	@Test
-//	public void getProjectRelatedDetailsTest() {
-//
-//		Mockito.when(taskRepository.getProjectRelatedDetails(Mockito.anyLong()))
-//				.thenReturn(new TaskMockData().getProjectRelatedDetailsList());
-//
-//		List<Object[]> output = taskService.getProjectRelatedDetails(Mockito.anyLong());
-//
-//		Assert.assertEquals(1, output.size());
-//
-//	}
+		Mockito.when(taskRepository.getTaskIdCount(Mockito.anyLong()))
+				.thenReturn(new TaskMockData().getNoOfTasks());
+
+		Long output = taskService.getNoOfTasks(Mockito.anyLong());
+
+		Assert.assertEquals(Long.valueOf(1), output);
+
+	}
+	
+	@Test
+	public void getCompletedTasks() {
+
+		Mockito.when(taskRepository.getStatusCompletedCount(Mockito.anyLong()))
+				.thenReturn(new TaskMockData().getStatusCompletedCount());
+
+		Long output = taskService.getCompletedTasks(Mockito.anyLong());
+
+		Assert.assertEquals(Long.valueOf(1), output);
+
+	}
 
 }
