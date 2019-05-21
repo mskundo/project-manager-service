@@ -17,9 +17,12 @@ public class TaskMockData {
 		task.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-03")));
 		task.setPriority(1);
 		task.setStatus("New");
-		task.setUser(new UserMockData().getSingleUser());
-		task.setProject(new ProjectMockData().getSingleProject());
-		task.setParent(new ParentTaskMockData().getSingleParentTask());
+		task.setUserId(1L);
+		task.setUserName("DeummyName");
+		task.setParentTaskId(1L);
+		task.setParentName("Task1");
+		task.setProjectId(1L);
+		task.setProjectName("Dummy Project");
 
 		return task;
 	}
@@ -54,9 +57,12 @@ public class TaskMockData {
 		t.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-03")));
 		t.setPriority(1);
 		t.setStatus("New");
-		t.setParent(new ParentTaskMockData().getSingleParentTask());
-		t.setProject(new ProjectMockData().getSingleProject());
-		t.setUser(new UserMockData().getSingleUser());
+		t.setUserId(1L);
+		t.setUserName("DeummyName");
+		t.setParentTaskId(1L);
+		t.setParentName("Task1");
+		t.setProjectId(1L);
+		t.setProjectName("Dummy Project");
 		taskList.add(t);
 
 		return taskList;

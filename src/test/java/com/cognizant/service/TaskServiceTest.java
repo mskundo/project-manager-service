@@ -39,8 +39,8 @@ public class TaskServiceTest {
 		TaskRecord output = taskService.saveTask(new TaskMockData().getTaskRecord());
 
 		Assert.assertEquals(new TaskMockData().getTaskRecord().getTaskName(), output.getTaskName());
-		Assert.assertEquals(new TaskMockData().getTaskRecord().getProject().getProjectId(),
-				output.getProject().getProjectId());
+		Assert.assertEquals(new TaskMockData().getTaskRecord().getProjectId(),
+				output.getProjectId());
 	}
 
 	@Test

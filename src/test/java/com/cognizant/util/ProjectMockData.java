@@ -28,8 +28,7 @@ public class ProjectMockData {
 		project.setStartDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-01")));
 		project.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-20")));
 		project.setPriority(1);
-		project.setUser(new UserMockData().getSingleUser());
-		project.setTask(new TaskMockData().getSingleTask());
+		project.setUserId(1L);
 		return project;
 	}
 

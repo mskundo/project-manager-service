@@ -37,8 +37,7 @@ public class ProjectService {
 		try {
 			logger.info("getting data from project table"); 
 			List<Project> projects = projectRepository.findAllProjects();
-			List<ProjectTaskRecord> ptlist = new ArrayList<ProjectTaskRecord>();
-			
+			List<ProjectTaskRecord> ptlist = new ArrayList<ProjectTaskRecord>();			
 			for (Project p : projects) {
 				ProjectRecord projectRecord = new ProjectRecord();
 				projectRecord.setProjectId(p.getProjectId());
@@ -46,6 +45,9 @@ public class ProjectService {
 				projectRecord.setPriority(p.getPriority());
 				projectRecord.setProjectName(p.getProjectName());
 				projectRecord.setStartDate(p.getStartDate());
+				projectRecord.setUserId(p.getUserId());
+				String userName=userService.getUserName(p.getUserId());
+				projectRecord.setUserName(userName);
 				Long noOfTask = taskService.getNoOfTasks(p.getProjectId());
 				Long completedTask = taskService.getCompletedTasks(p.getProjectId());
 				ProjectTaskRecord pt=new ProjectTaskRecord();
@@ -69,7 +71,7 @@ public class ProjectService {
 			project.setStartDate(projectRecord.startDate);
 			project.setEndDate(projectRecord.endDate);
 			project.setPriority(projectRecord.priority);
-			project.setUserId(projectRecord.user.getUserId());
+			project.setUserId(projectRecord.getUserId());
 			project.setStatus("N");
 			projectRepository.save(project);
 			return projectRecord;
@@ -95,6 +97,7 @@ public class ProjectService {
 		try {
 			logger.info("updating data in project table");
 			project.setProjectId(projectId);
+			project.setStatus("N");
 			return projectRepository.save(project);
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while updating data in project table", e.getMessage());
