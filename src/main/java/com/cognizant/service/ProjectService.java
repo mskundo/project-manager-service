@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cognizant.entity.Project;
-import com.cognizant.entity.User;
 import com.cognizant.model.ProjectRecord;
 import com.cognizant.model.ProjectTaskRecord;
 import com.cognizant.repository.ProjectRepository;
@@ -31,19 +30,18 @@ public class ProjectService {
 
 	@Autowired
 	public TaskService taskService;
-	
+
 	@Autowired
 	public TaskRepository taskRepository;
 	
 	@Autowired
 	public UserRepository userRepository;
 
-	public List<ProjectTaskRecord> findAll() {
+	public List<ProjectTaskRecord> findAllRecords() {
 		try {
-			logger.info("getting data from project table"); 
+			logger.info("getting data from project table");
 			List<Project> projects = projectRepository.findAllProjects();
 			List<ProjectTaskRecord> ptlist = new ArrayList<ProjectTaskRecord>();
-			
 			for (Project p : projects) {
 				ProjectRecord projectRecord = new ProjectRecord();
 				projectRecord.setProjectId(p.getProjectId());
@@ -52,17 +50,15 @@ public class ProjectService {
 				projectRecord.setProjectName(p.getProjectName());
 				projectRecord.setStartDate(p.getStartDate());
 				projectRecord.setUserId(p.getUserId());
-//				List<User> user=userRepository.getUserData(p.getUserId());
-				List<Object[]> taskEntity = taskService.getProjectRelatedDetails(p.getProjectId());
-				for (Object[] task : taskEntity) {
-					ProjectTaskRecord pt=new ProjectTaskRecord();
-					pt.setNoOfTask((long) task[0]);
-//					long xyz =  (long) task[1];
-//					System.out.println("value"+xyz);
-					
-					pt.setProjectRecord(projectRecord);
-					ptlist.add(pt);
-				}
+				String userName = userService.getUserName(p.getUserId());
+				projectRecord.setUserName(userName);
+				Long noOfTask = taskService.getNoOfTasks(p.getProjectId());
+				Long completedTask = taskService.getCompletedTasks(p.getProjectId());
+				ProjectTaskRecord pt = new ProjectTaskRecord();
+				pt.setNoOfTask(noOfTask);
+				pt.setCompletedTask(completedTask);
+				pt.setProjectRecord(projectRecord);
+				ptlist.add(pt);
 			}
 			return ptlist;
 		} catch (Exception e) {
@@ -79,7 +75,7 @@ public class ProjectService {
 			project.setStartDate(projectRecord.startDate);
 			project.setEndDate(projectRecord.endDate);
 			project.setPriority(projectRecord.priority);
-			project.setUserId(projectRecord.user.getUserId());
+			project.setUserId(projectRecord.getUserId());
 			project.setStatus("N");
 			projectRepository.save(project);
 			return projectRecord;
@@ -105,6 +101,7 @@ public class ProjectService {
 		try {
 			logger.info("updating data in project table");
 			project.setProjectId(projectId);
+			project.setStatus("N");
 			return projectRepository.save(project);
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while updating data in project table", e.getMessage());
@@ -118,6 +115,18 @@ public class ProjectService {
 			return projectRepository.findAllProjects();
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while getting all data from project table", e.getMessage());
+			throw e;
+		}
+	}
+
+	public String getProjectName(Long projectId) {
+		try {
+			logger.info("getting project name from project table");
+			String projectName = projectRepository.getProjectName(projectId);
+			return projectName;
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception occurred while getting project name from project table",
+					e.getMessage());
 			throw e;
 		}
 	}

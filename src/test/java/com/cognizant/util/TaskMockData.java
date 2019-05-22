@@ -1,12 +1,10 @@
 package com.cognizant.util;
 
 import com.cognizant.entity.Task;
-import com.cognizant.model.ProjectTaskRecord;
 import com.cognizant.model.TaskRecord;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class TaskMockData {
@@ -19,9 +17,12 @@ public class TaskMockData {
 		task.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-03")));
 		task.setPriority(1);
 		task.setStatus("New");
-		task.setUser(new UserMockData().getSingleUser());
-		task.setProject(new ProjectMockData().getSingleProject());
-		task.setParent(new ParentTaskMockData().getSingleParentTask());
+		task.setUserId(1L);
+		task.setUserName("DeummyName");
+		task.setParentTaskId(1L);
+		task.setParentName("Task1");
+		task.setProjectId(1L);
+		task.setProjectName("Dummy Project");
 
 		return task;
 	}
@@ -56,21 +57,27 @@ public class TaskMockData {
 		t.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-03")));
 		t.setPriority(1);
 		t.setStatus("New");
-		t.setParent(new ParentTaskMockData().getSingleParentTask());
-		t.setProject(new ProjectMockData().getSingleProject());
-		t.setUser(new UserMockData().getSingleUser());
+		t.setUserId(1L);
+		t.setUserName("DeummyName");
+		t.setParentTaskId(1L);
+		t.setParentName("Task1");
+		t.setProjectId(1L);
+		t.setProjectName("Dummy Project");
 		taskList.add(t);
 
 		return taskList;
 	}
-	
-	public List<Object[]> getProjectRelatedDetailsList() {
-		List<Object[]> list=new ArrayList<Object[]>();
-		Object p=new ProjectTaskRecord();
-		((ProjectTaskRecord) p).setCompletedTask((long)1);
-		((ProjectTaskRecord) p).setNoOfTask((long)1);
-		list.addAll((Collection<? extends Object[]>) p);
-		return list;
+
+	public Long getNoOfTasks() {
+		return 1L;
+	}
+
+	public Long getCompletedTasks() {
+		return 1L;
+	}
+
+	public Long getStatusCompletedCount() {
+		return 1L;
 	}
 
 }

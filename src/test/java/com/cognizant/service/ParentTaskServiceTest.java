@@ -48,7 +48,7 @@ public class ParentTaskServiceTest {
     public void getparentTaskDataTest() {
     	Mockito.when(parentTaskRepository.findNameById(Mockito.anyLong()))
 		.thenReturn(new ParentTaskMockData().getParentTaskListData());
-    	List<String> output = parentTaskService.getparentTaskData(Mockito.anyLong());
-    	Assert.assertEquals(2, output.size());
+    	String output = parentTaskService.getparentTaskData(Mockito.anyLong());
+    	Assert.assertEquals("DummyParentTask", output);
     }
 }

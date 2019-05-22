@@ -3,11 +3,12 @@ package com.cognizant.service;
 import com.cognizant.entity.Project;
 import com.cognizant.model.ProjectRecord;
 import com.cognizant.model.ProjectTaskRecord;
-import com.cognizant.repository.ParentTaskRepository;
 import com.cognizant.repository.ProjectRepository;
 import com.cognizant.repository.TaskRepository;
-import com.cognizant.util.ParentTaskMockData;
 import com.cognizant.util.ProjectMockData;
+import com.cognizant.util.TaskMockData;
+import com.cognizant.util.UserMockData;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +35,7 @@ public class ProjectServiceTest {
     public UserService userService;
     
     @Mock
-    public ParentTaskRepository parentTaskRepository;
+    public TaskService taskService;
 
     @Test
     public void saveProjectTest(){
@@ -68,7 +69,7 @@ public class ProjectServiceTest {
     @Test
     public void findAllProjectsTest(){
 
-        Mockito.when(projectRepository.findAll()).thenReturn(new ProjectMockData().getProjectList());
+        Mockito.when(projectRepository.findAllProjects()).thenReturn(new ProjectMockData().getProjectList());
 
         List<Project> output = projectService.findAllProjects();
 
@@ -81,12 +82,25 @@ public class ProjectServiceTest {
 
         Mockito.when(projectRepository.findAll()).thenReturn(new ProjectMockData().getProjectList());
         
-        Mockito.when(parentTaskRepository.findNameById(Mockito.anyLong()))
-		.thenReturn(new ParentTaskMockData().getParentTaskListData());
+        Mockito.when(userService.getUserName(Mockito.anyLong()))
+		.thenReturn(new UserMockData().getUserName());
+        
+        Mockito.when(taskService.getCompletedTasks(Mockito.anyLong()))
+		.thenReturn(new TaskMockData().getCompletedTasks());
+        
+        Mockito.when(taskService.getNoOfTasks(Mockito.anyLong()))
+		.thenReturn(new TaskMockData().getNoOfTasks());
 
-        List<ProjectTaskRecord> output = projectService.findAll();
+        List<ProjectTaskRecord> output = projectService.findAllRecords();
 
         Assert.assertEquals(0,output.size());
 
+    }
+    
+    @Test
+    public void getProjectNameTest(){
+    	Mockito.when(projectRepository.getProjectName(Mockito.anyLong())).thenReturn(new ProjectMockData().getProjectName());
+    	String output=projectService.getProjectName((long)1);
+    	Assert.assertEquals("Dummy Project",output);
     }
 }

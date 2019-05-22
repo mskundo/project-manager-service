@@ -21,5 +21,8 @@ public interface ProjectRepository extends JpaRepository<Project,Long> {
 	@Query("from Project where status='N'")
 	List<Project> findAllProjects();
 
+	@Query("select projectName from Project where project_id=:projectId")
+	String getProjectName(@Param("projectId") Long projectId);
+
 
 }

@@ -2,9 +2,6 @@ package com.cognizant.model;
 
 import java.util.Date;
 
-import com.cognizant.entity.Task;
-import com.cognizant.entity.User;
-
 public class ProjectRecord {
 	
 	public Long projectId;
@@ -12,10 +9,15 @@ public class ProjectRecord {
 	public Date startDate;
 	public Date endDate;
 	public int priority;
-	public User user;
-	public Task task;
 	public Long userId;
+	public String userName;
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public Long getUserId() {
 		return userId;
 	}
@@ -52,19 +54,5 @@ public class ProjectRecord {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Task getTask() {
-		return task;
-	}
-	public void setTask(Task task) {
-		this.task = task;
-	}
-	
-	
 
 }

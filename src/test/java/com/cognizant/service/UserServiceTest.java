@@ -62,4 +62,16 @@ public class UserServiceTest {
         List<User> output = userService.getAll();
         Assert.assertEquals(2,output.size());
     }
+    
+    @Test
+    public void getUserNameTest(){
+    	Mockito.when(userRepository.getFullName(Mockito.anyLong())).thenReturn(new UserMockData().getUserName());
+    	String output=userService.getUserName((long)1);
+    	Assert.assertEquals("Dummy name",output);
+    }
+    
+    @Test
+    public void saveUserTestNavigativeScenario() {
+    	 Mockito.when(userRepository.save(Mockito.any(User.class))).thenThrow(RuntimeException.class);
+    }
 }

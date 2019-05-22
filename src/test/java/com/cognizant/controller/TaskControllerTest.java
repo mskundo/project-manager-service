@@ -29,8 +29,8 @@ public class TaskControllerTest {
 				.thenReturn(new TaskMockData().getTaskRecord());
 		TaskRecord output = taskController.saveTask(new TaskMockData().getTaskRecord());
 		Assert.assertEquals(new TaskMockData().getTaskRecord().getTaskName(), output.getTaskName());
-		Assert.assertEquals(new TaskMockData().getTaskRecord().getProject().getProjectId(),
-				output.getProject().getProjectId());
+		Assert.assertEquals(new TaskMockData().getTaskRecord().getProjectId(),
+				output.getProjectId());
 
 	}
 

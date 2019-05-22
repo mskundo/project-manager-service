@@ -37,7 +37,7 @@ public class ProjectController {
 	
 	@GetMapping("/getTaskProjects")
     public List<ProjectTaskRecord> getAllProjects() {
-    	return projectService.findAll();
+    	return projectService.findAllRecords();
     }
 	
 	@PutMapping("/updateProject/{id}")

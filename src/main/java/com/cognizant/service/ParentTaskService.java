@@ -43,8 +43,8 @@ public class ParentTaskService {
 		}
 	}
 
-	public List<String> getparentTaskData(Long parentId) {
-	List<String> parentTaskName = parentTaskRepository.findNameById(parentId);
+	public String getparentTaskData(Long parentId) {
+	String parentTaskName = parentTaskRepository.findNameById(parentId);
 		return parentTaskName;
 	}
 

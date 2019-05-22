@@ -20,8 +20,11 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 	@Query("from Task where project_id= :projectId and status!='suspend'")
 	List<Task> getTaskBySearch(@Param("projectId") Long projectId);
 	
-	@Query("select count(task_id) as task_id,  SUM( CASE WHEN status = 'completed' THEN 1 ELSE 0 END ) as status from Task where project_id= :projectId")
-	List<Object[]> getProjectRelatedDetails(@Param("projectId") Long projectId);
+	@Query("select count(task_id) as task_id from Task where project_id=:projectId")
+	Long getTaskIdCount(@Param("projectId") Long projectId);
+	
+	@Query("select SUM( CASE WHEN status = 'complete' THEN 1 ELSE 0 END ) as status from Task where project_id=:projectId")
+	Long getStatusCompletedCount(@Param("projectId") Long projectId);
 
 	@Modifying
 	@Query("update Task set status='suspend' where project_Id=:projectId")
