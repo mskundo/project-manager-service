@@ -18,6 +18,7 @@ public class ProjectMockData {
 		p.setStartDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-01")));
 		p.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-20")));
 		p.setPriority(1);
+		p.setStatus("N");
 		return p;
 
 	}
@@ -29,6 +30,7 @@ public class ProjectMockData {
 		project.setEndDate(java.sql.Date.valueOf(LocalDate.parse("2019-04-20")));
 		project.setPriority(1);
 		project.setUserId(1L);
+		project.setUserName("Dummy name");
 		return project;
 	}
 
@@ -43,10 +45,10 @@ public class ProjectMockData {
 		List<Project> projectList = new ArrayList<Project>();
 
 		projectList.add(new Project((long) 1, "DummyProject", java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1, (long)1, "Y"));
+				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1, (long)1, "N"));
 
 		projectList.add(new Project((long) 2, "DummyProject2", java.sql.Date.valueOf(LocalDate.parse("2019-04-01")),
-				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1,(long)1, "Y"));
+				java.sql.Date.valueOf(LocalDate.parse("2019-04-20")), 1,(long)1, "N"));
 
 		return projectList;
 	}
@@ -68,6 +70,10 @@ public class ProjectMockData {
 		projectList.add(ptask1);
 
 		return projectList;
+	}
+
+	public String getProjectName() {
+		return "Dummy Project";
 	}
 
 }

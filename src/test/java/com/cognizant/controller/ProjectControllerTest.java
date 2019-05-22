@@ -45,7 +45,7 @@ public class ProjectControllerTest {
     @Test
     public void getAllProjectsTest(){
 
-        Mockito.when(projectService.findAll()).thenReturn(new ProjectMockData().getProjectTaskList());
+        Mockito.when(projectService.findAllRecords()).thenReturn(new ProjectMockData().getProjectTaskList());
         List<ProjectTaskRecord> output = projectController.getAllProjects();
 
         Assert.assertEquals(2, output.size());

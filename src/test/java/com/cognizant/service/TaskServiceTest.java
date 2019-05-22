@@ -4,7 +4,9 @@ import com.cognizant.entity.Task;
 import com.cognizant.model.TaskRecord;
 import com.cognizant.repository.TaskRepository;
 import com.cognizant.util.ParentTaskMockData;
+import com.cognizant.util.ProjectMockData;
 import com.cognizant.util.TaskMockData;
+import com.cognizant.util.UserMockData;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,6 +29,9 @@ public class TaskServiceTest {
 
 	@Mock
 	public UserService userService;
+	
+	@Mock
+	public ProjectService projectService;
 	
 	@Mock
 	public ParentTaskService parentTaskService;
@@ -79,6 +84,12 @@ public class TaskServiceTest {
 		
 		Mockito.when(parentTaskService.getparentTaskData(Mockito.anyLong()))
 		.thenReturn(new ParentTaskMockData().getParentTaskListData());
+		
+		Mockito.when(userService.getUserName(Mockito.anyLong()))
+		.thenReturn(new UserMockData().getUserName());
+		
+		Mockito.when(projectService.getProjectName(Mockito.anyLong()))
+		.thenReturn(new ProjectMockData().getProjectName());
 
 		List<TaskRecord> output = taskService.getTaskBySearch(Mockito.anyLong());
 

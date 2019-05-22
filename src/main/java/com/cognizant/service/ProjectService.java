@@ -29,15 +29,15 @@ public class ProjectService {
 
 	@Autowired
 	public TaskService taskService;
-	
+
 	@Autowired
 	public TaskRepository taskRepository;
 
-	public List<ProjectTaskRecord> findAll() {
+	public List<ProjectTaskRecord> findAllRecords() {
 		try {
-			logger.info("getting data from project table"); 
+			logger.info("getting data from project table");
 			List<Project> projects = projectRepository.findAllProjects();
-			List<ProjectTaskRecord> ptlist = new ArrayList<ProjectTaskRecord>();			
+			List<ProjectTaskRecord> ptlist = new ArrayList<ProjectTaskRecord>();
 			for (Project p : projects) {
 				ProjectRecord projectRecord = new ProjectRecord();
 				projectRecord.setProjectId(p.getProjectId());
@@ -46,15 +46,15 @@ public class ProjectService {
 				projectRecord.setProjectName(p.getProjectName());
 				projectRecord.setStartDate(p.getStartDate());
 				projectRecord.setUserId(p.getUserId());
-				String userName=userService.getUserName(p.getUserId());
+				String userName = userService.getUserName(p.getUserId());
 				projectRecord.setUserName(userName);
 				Long noOfTask = taskService.getNoOfTasks(p.getProjectId());
 				Long completedTask = taskService.getCompletedTasks(p.getProjectId());
-				ProjectTaskRecord pt=new ProjectTaskRecord();
-					pt.setNoOfTask(noOfTask);
-					pt.setCompletedTask(completedTask);
-					pt.setProjectRecord(projectRecord);
-					ptlist.add(pt);
+				ProjectTaskRecord pt = new ProjectTaskRecord();
+				pt.setNoOfTask(noOfTask);
+				pt.setCompletedTask(completedTask);
+				pt.setProjectRecord(projectRecord);
+				ptlist.add(pt);
 			}
 			return ptlist;
 		} catch (Exception e) {
@@ -116,8 +116,15 @@ public class ProjectService {
 	}
 
 	public String getProjectName(Long projectId) {
-		String projectName=projectRepository.getProjectName(projectId);
-		return projectName;
+		try {
+			logger.info("getting project name from project table");
+			String projectName = projectRepository.getProjectName(projectId);
+			return projectName;
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Exception occurred while getting project name from project table",
+					e.getMessage());
+			throw e;
+		}
 	}
 
 }

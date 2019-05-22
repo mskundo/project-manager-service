@@ -32,4 +32,8 @@ public class UserMockData {
 
 		return userList;
 	}
+
+	public String getUserName() {
+		return "Dummy name";
+	}
 }
