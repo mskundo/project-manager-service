@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cognizant.entity.Project;
+import com.cognizant.entity.User;
 import com.cognizant.model.ProjectRecord;
 import com.cognizant.model.ProjectTaskRecord;
 import com.cognizant.repository.ProjectRepository;
 import com.cognizant.repository.TaskRepository;
+import com.cognizant.repository.UserRepository;
 
 @Transactional
 @Service
@@ -32,6 +34,9 @@ public class ProjectService {
 	
 	@Autowired
 	public TaskRepository taskRepository;
+	
+	@Autowired
+	public UserRepository userRepository;
 
 	public List<ProjectTaskRecord> findAll() {
 		try {
@@ -46,11 +51,15 @@ public class ProjectService {
 				projectRecord.setPriority(p.getPriority());
 				projectRecord.setProjectName(p.getProjectName());
 				projectRecord.setStartDate(p.getStartDate());
+				projectRecord.setUserId(p.getUserId());
+//				List<User> user=userRepository.getUserData(p.getUserId());
 				List<Object[]> taskEntity = taskService.getProjectRelatedDetails(p.getProjectId());
 				for (Object[] task : taskEntity) {
 					ProjectTaskRecord pt=new ProjectTaskRecord();
 					pt.setNoOfTask((long) task[0]);
-					pt.setCompletedTask((long) task[1]);
+//					long xyz =  (long) task[1];
+//					System.out.println("value"+xyz);
+					
 					pt.setProjectRecord(projectRecord);
 					ptlist.add(pt);
 				}
@@ -106,7 +115,7 @@ public class ProjectService {
 	public List<Project> findAllProjects() {
 		try {
 			logger.info("getting all data from project table");
-			return projectRepository.findAll();
+			return projectRepository.findAllProjects();
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Exception occurred while getting all data from project table", e.getMessage());
 			throw e;
