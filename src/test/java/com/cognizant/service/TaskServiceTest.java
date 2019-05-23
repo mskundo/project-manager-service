@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
@@ -29,10 +30,10 @@ public class TaskServiceTest {
 
 	@Mock
 	public UserService userService;
-	
+
 	@Mock
 	public ProjectService projectService;
-	
+
 	@Mock
 	public ParentTaskService parentTaskService;
 
@@ -44,8 +45,7 @@ public class TaskServiceTest {
 		TaskRecord output = taskService.saveTask(new TaskMockData().getTaskRecord());
 
 		Assert.assertEquals(new TaskMockData().getTaskRecord().getTaskName(), output.getTaskName());
-		Assert.assertEquals(new TaskMockData().getTaskRecord().getProjectId(),
-				output.getProjectId());
+		Assert.assertEquals(new TaskMockData().getTaskRecord().getProjectId(), output.getProjectId());
 	}
 
 	@Test
@@ -61,9 +61,8 @@ public class TaskServiceTest {
 		Task output = taskService.updateTask(new TaskMockData().getSingleTask(), (long) 1);
 
 		Assert.assertEquals(new TaskMockData().getSingleTask().getTaskId(), output.getTaskId());
-		
+
 	}
-	
 
 	@Test
 	public void getTaskTest() {
@@ -79,36 +78,33 @@ public class TaskServiceTest {
 	@Test
 	public void getTaskBySearchTest() {
 
-		Mockito.when(taskRepository.getTaskBySearch(Mockito.anyLong()))
-				.thenReturn(new TaskMockData().getTaskList());
-		
+		Mockito.when(taskRepository.getTaskBySearch(Mockito.anyLong())).thenReturn(new TaskMockData().getTaskList());
+
 		Mockito.when(parentTaskService.getparentTaskData(Mockito.anyLong()))
-		.thenReturn(new ParentTaskMockData().getParentTaskListData());
-		
-		Mockito.when(userService.getUserName(Mockito.anyLong()))
-		.thenReturn(new UserMockData().getUserName());
-		
+				.thenReturn(new ParentTaskMockData().getParentTaskListData());
+
+		Mockito.when(userService.getUserName(Mockito.anyLong())).thenReturn(new UserMockData().getUserName());
+
 		Mockito.when(projectService.getProjectName(Mockito.anyLong()))
-		.thenReturn(new ProjectMockData().getProjectName());
+				.thenReturn(new ProjectMockData().getProjectName());
 
 		List<TaskRecord> output = taskService.getTaskBySearch(Mockito.anyLong());
 
 		Assert.assertEquals(2, output.size());
 
 	}
-	
+
 	@Test
 	public void getNoOfTasksTest() {
 
-		Mockito.when(taskRepository.getTaskIdCount(Mockito.anyLong()))
-				.thenReturn(new TaskMockData().getNoOfTasks());
+		Mockito.when(taskRepository.getTaskIdCount(Mockito.anyLong())).thenReturn(new TaskMockData().getNoOfTasks());
 
 		Long output = taskService.getNoOfTasks(Mockito.anyLong());
 
 		Assert.assertEquals(Long.valueOf(1), output);
 
 	}
-	
+
 	@Test
 	public void getCompletedTasks() {
 
@@ -119,6 +115,50 @@ public class TaskServiceTest {
 
 		Assert.assertEquals(Long.valueOf(1), output);
 
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void saveTaskNavigativeScenario() {
+		Mockito.when(taskRepository.save(Mockito.any(Task.class))).thenThrow(RuntimeException.class);
+
+		TaskRecord output = taskService.saveTask(new TaskMockData().getTaskRecord());
+
+		Assert.assertEquals(new TaskMockData().getTaskRecord().getTaskName(), output.getTaskName());
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void deleteTaskTestNavigativeScenario() {
+		Mockito.doThrow(EmptyResultDataAccessException.class).when(taskRepository).suspendById(Mockito.anyLong());
+
+		String output = taskService.deleteTask((long) 1);
+
+		Assert.assertEquals("user deleted successfully", output);
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void updateTaskTestNavigativeScenario() {
+		Mockito.when(taskRepository.save(Mockito.any(Task.class))).thenThrow(RuntimeException.class);
+		Task output = taskService.updateTask(new TaskMockData().getSingleTask(), (long) 1);
+
+		Assert.assertEquals(new TaskMockData().getSingleTask().getTaskId(), output.getTaskId());
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void getTaskTestNavigativeScenario() {
+		Mockito.when(taskRepository.findAll()).thenThrow(RuntimeException.class);
+
+		List<Task> output = taskService.getTask();
+
+		Assert.assertEquals(2, output.size());
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void getTaskBySearchTestNavigativeScenario() {
+		Mockito.when(taskRepository.getTaskBySearch(Mockito.anyLong())).thenThrow(RuntimeException.class);
+
+		List<TaskRecord> output = taskService.getTaskBySearch(Mockito.anyLong());
+
+		Assert.assertEquals(2, output.size());
 	}
 
 }

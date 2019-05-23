@@ -51,4 +51,27 @@ public class ParentTaskServiceTest {
     	String output = parentTaskService.getparentTaskData(Mockito.anyLong());
     	Assert.assertEquals("DummyParentTask", output);
     }
+    
+    @Test(expected = RuntimeException.class)
+    public void saveTestNavigativeScenario() {    	
+    	Mockito.when(parentTaskRepository.save(Mockito.any(ParentTask.class))).thenThrow(RuntimeException.class);
+        ParentTask output =  parentTaskService.save(new ParentTaskMockData().getParentTaskRecord());
+        Assert.assertEquals(new ParentTaskMockData().getSingleParentTask().getParentId(), output.getParentId());
+    }
+    
+    @Test(expected = RuntimeException.class)
+    public void getParentTasksTestNavigativeScenario() {    	
+    	 Mockito.when(parentTaskRepository.findAll()).thenThrow(RuntimeException.class);
+         List<ParentTask> output = parentTaskService.getParentTasks();
+
+         Assert.assertEquals(2, output.size());
+    }
+    
+    @Test(expected = RuntimeException.class)
+    public void getparentTaskDataTestNavigativeScenario() {    	
+    	Mockito.when(parentTaskRepository.findNameById(Mockito.anyLong()))
+    	.thenThrow(RuntimeException.class);
+    	String output = parentTaskService.getparentTaskData(Mockito.anyLong());
+    	Assert.assertEquals("DummyParentTask", output);
+    }
 }
