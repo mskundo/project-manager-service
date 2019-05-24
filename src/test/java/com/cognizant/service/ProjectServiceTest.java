@@ -132,4 +132,6 @@ public class ProjectServiceTest {
 		String output = projectService.getProjectName((long) 1);
 		Assert.assertEquals("Dummy Project", output);
 	}
+	
+
 }
