@@ -1,4 +1,4 @@
 FROM openjdk:8
-ADD target/ProjectManager-0.0.1-SNAPSHOT.jar ProjectManager-0.0.1-SNAPSHOT.jar
+ADD target/manager-mysql.jar manager-mysql.jar
 EXPOSE 9091
-ENTRYPOINT ["java", "-jar", "ProjectManager-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "manager-mysql.jar"]
